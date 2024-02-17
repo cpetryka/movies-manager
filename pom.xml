@@ -239,7 +239,7 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>com/app/repository/impl/**</exclude>
+                        <exclude>com/app/config/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
