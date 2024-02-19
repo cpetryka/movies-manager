@@ -22,6 +22,7 @@
         <junit.platform.runner.version>1.10.2</junit.platform.runner.version>
         <asserj.version>3.25.3</asserj.version>
         <mockito.version>5.10.0</mockito.version>
+        <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
 
         <!-- PLUGINS VERSION -->
         <maven.assembly.plugin.version>3.6.0</maven.assembly.plugin.version>
@@ -94,6 +95,10 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -157,6 +162,11 @@
                 <artifactId>mockito-junit-jupiter</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${jakarta.annotation-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
