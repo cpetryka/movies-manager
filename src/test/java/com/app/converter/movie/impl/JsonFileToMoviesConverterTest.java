@@ -13,8 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -49,10 +47,10 @@ class JsonFileToMoviesConverterTest {
     @DisplayName("when all data is correct")
     void test1() {
         when(moviesDataJsonDeserializer.fromJson(anyString()))
-                .thenReturn(MOVIES_DATA);
+                .thenReturn(MOVIES_DATA_LIST);
 
         assertThat(fileToCarsConverter.convert(MOVIES_FILENAME))
-                .hasSize(2);
+                .hasSize(3);
     }
 
     @Test

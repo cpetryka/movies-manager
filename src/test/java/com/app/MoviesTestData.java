@@ -42,5 +42,21 @@ public interface MoviesTestData {
 
     Movie MOVIE_2 = MOVIE_2_DATA.toMovie();
 
-    MoviesData MOVIES_DATA = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA));
+    MovieData MOVIE_3_DATA = new MovieData(
+            "TRANSFORMERS RISE OF THE BEASTS",
+            Genre.ACTION,
+            "STEVEN CAPLE JR",
+            LocalDate.of(2023, 6, 6),
+            List.of(
+                    "ANTHONY RAMOS",
+                    "DOMINIQUE FISHBACK",
+                    "LUNA LAUREN VELEZ"
+            ),
+            128,
+            6.0
+    );
+
+    Movie MOVIE_3 = MOVIE_3_DATA.toMovie();
+
+    MoviesData MOVIES_DATA_LIST = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA));
 }
