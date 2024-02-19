@@ -13,11 +13,11 @@ import java.util.List;
 @ToString
 @Builder
 public class Movie {
-    private final String title;
-    private final Genre genre;
-    private final String director;
-    private final LocalDate releaseDate;
-    private final List<String> cast;
-    private final int duration;
-    private final double rating;
+    final String title;
+    final Genre genre;
+    final String director;
+    final LocalDate releaseDate;
+    final List<String> cast;
+    final int duration;
+    final double rating;
 }
