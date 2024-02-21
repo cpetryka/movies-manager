@@ -47,7 +47,7 @@ class JsonFileToMoviesConverterTest {
     @DisplayName("when all data is correct")
     void test1() {
         when(moviesDataJsonDeserializer.fromJson(anyString()))
-                .thenReturn(MOVIES_DATA_LIST);
+                .thenReturn(MOVIES_DATA);
 
         assertThat(fileToCarsConverter.convert(MOVIES_FILENAME))
                 .hasSize(3);

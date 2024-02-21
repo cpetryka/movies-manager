@@ -58,5 +58,7 @@ public interface MoviesTestData {
 
     Movie MOVIE_3 = MOVIE_3_DATA.toMovie();
 
-    MoviesData MOVIES_DATA_LIST = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA));
+    MoviesData MOVIES_DATA = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA));
+
+    List<Movie> MOVIES_LIST = List.of(MOVIE_1, MOVIE_2, MOVIE_3);
 }
