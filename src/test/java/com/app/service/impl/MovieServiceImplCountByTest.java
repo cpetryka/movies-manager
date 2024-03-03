@@ -1,7 +1,6 @@
 package com.app.service.impl;
 
 import com.app.model.Genre;
-import com.app.model.Mappers;
 import com.app.repository.MovieRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-class MoviesServiceImplCountByTest {
+class MovieServiceImplCountByTest {
     @Mock
     private MovieRepository movieRepository;
 
