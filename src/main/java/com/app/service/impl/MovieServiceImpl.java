@@ -3,6 +3,7 @@ package com.app.service.impl;
 import com.app.model.Movie;
 import com.app.repository.MovieRepository;
 import com.app.service.MovieService;
+import com.app.utils.MinMax;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +60,63 @@ public class MovieServiceImpl implements MovieService {
                 .getMovies()
                 .stream()
                 .collect(Collectors.groupingBy(classifier, Collectors.counting()));
+    }
+
+    /**
+     * Groups {@code Movie} objects by specified criteria and then finds the minimum
+     * and maximum values for each group based on provided another criteria.
+     *
+     * @param <T>                    the type of the grouping key.
+     * @param <U>                    the type of the min-max key.
+     * @param groupingFunction       a function that produces the key used to group {@code Movie} objects.
+     * @param minMaxGroupingFunction a function that produces the key used to group {@code Movie} objects for each group.
+     * @param minMaxComparator a comparator based on which min and max are determined.
+     * @return a map where keys are produced by the grouping function and values are {@code MinMax} objects
+     * containing the minimum and maximum values based on the comparator for each group.
+     * @throws IllegalArgumentException if any of the provided functions or comparator is null.
+     * @see MinMax
+     */
+    @Override
+    public <T, U> Map<T, MinMax<List<Movie>>> groupAndFindMinMaxByCriteria(Function<Movie, T> groupingFunction,
+            Function<Movie, U> minMaxGroupingFunction, Comparator<U> minMaxComparator) {
+        if(groupingFunction == null) {
+            throw new IllegalArgumentException("Grouping function is null");
+        }
+
+        if(minMaxGroupingFunction == null) {
+            throw new IllegalArgumentException("Min max grouping function is null");
+        }
+
+        if(minMaxComparator == null) {
+            throw new IllegalArgumentException("Min max comparator is null");
+        }
+
+        return movieRepository
+                .getMovies()
+                .stream()
+                .collect(Collectors.groupingBy(
+                        groupingFunction,
+                        Collectors.collectingAndThen(
+                                Collectors.groupingBy(minMaxGroupingFunction),
+                                groupedMovies -> {
+                                    var minKey = groupedMovies
+                                            .keySet()
+                                            .stream()
+                                            .min(minMaxComparator)
+                                            .orElseThrow();
+
+                                    var maxKey = groupedMovies
+                                            .keySet()
+                                            .stream()
+                                            .max(minMaxComparator)
+                                            .orElseThrow();
+
+                                    return new MinMax<>(
+                                            groupedMovies.get(minKey),
+                                            groupedMovies.get(maxKey)
+                                    );
+                                }
+                        )
+                ));
     }
 }

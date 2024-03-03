@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.model.Movie;
+import com.app.utils.MinMax;
 
 import java.util.Comparator;
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.function.Function;
 public interface MovieService {
     List<Movie> sortBy(Comparator<Movie>movieComparator);
     <T> Map<T, Long> countBy(Function<Movie, T> classifier);
+    <T, U> Map<T, MinMax<List<Movie>>> groupAndFindMinMaxByCriteria(Function<Movie, T> groupingFunction,
+            Function<Movie, U> minMaxGroupingFunction, Comparator<U> minMaxComparator);
 }
