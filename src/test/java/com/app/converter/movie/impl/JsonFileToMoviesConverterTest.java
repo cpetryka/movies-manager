@@ -50,7 +50,7 @@ class JsonFileToMoviesConverterTest {
                 .thenReturn(MOVIES_DATA);
 
         assertThat(fileToCarsConverter.convert(MOVIES_FILENAME))
-                .hasSize(3);
+                .hasSize(5);
     }
 
     @Test

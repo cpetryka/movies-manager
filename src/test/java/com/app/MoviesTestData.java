@@ -53,12 +53,44 @@ public interface MoviesTestData {
                     "LUNA LAUREN VELEZ"
             ),
             128,
-            6.0
+            6.4
     );
 
     Movie MOVIE_3 = MOVIE_3_DATA.toMovie();
 
-    MoviesData MOVIES_DATA = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA));
+    MovieData MOVIE_4_DATA = new MovieData(
+            "UNCHARTED",
+            Genre.ACTION,
+            "RUBEN FLEISCHER",
+            LocalDate.of(2022, 2, 10),
+            List.of(
+                    "TOM HOLLAND",
+                    "MARK WAHLBERG",
+                    "SOPHIA ALI"
+            ),
+            116,
+            6.4
+    );
 
-    List<Movie> MOVIES_LIST = List.of(MOVIE_1, MOVIE_2, MOVIE_3);
+    Movie MOVIE_4 = MOVIE_4_DATA.toMovie();
+
+    MovieData MOVIE_5_DATA = new MovieData(
+            "THE LUCKY ONE",
+            Genre.ROMANCE,
+            "SCOTT HICKS",
+            LocalDate.of(2012, 4, 20),
+            List.of(
+                    "ZAC EFRON",
+                    "TAYLOR SCHILLING",
+                    "BLYTHE DANNER"
+            ),
+            101,
+            7.0
+    );
+
+    Movie MOVIE_5 = MOVIE_5_DATA.toMovie();
+
+    MoviesData MOVIES_DATA = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA, MOVIE_4_DATA, MOVIE_5_DATA));
+
+    List<Movie> MOVIES_LIST = List.of(MOVIE_1, MOVIE_2, MOVIE_3, MOVIE_4, MOVIE_5);
 }
