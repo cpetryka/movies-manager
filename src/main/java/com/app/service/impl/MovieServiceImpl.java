@@ -4,9 +4,12 @@ import com.app.model.Movie;
 import com.app.repository.MovieRepository;
 import com.app.service.MovieService;
 import com.app.utils.MinMax;
+import com.app.utils.Statistics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -118,5 +121,56 @@ public class MovieServiceImpl implements MovieService {
                                 }
                         )
                 ));
+    }
+
+    /**
+     * Finds minimum, maximum, and average values of a field extracted from each movie for a list of {@code Movie} objects.
+     * This is a generic method which means it can work with any field of the {@code Movie} class that implements
+     * the {@link Comparable} interface. The average is calculated specifically for {@code BigDecimal} values.
+     *
+     * @param <T>       the type of the field to be analyzed. This type must implement the Comparable interface.
+     * @param extractor a function that extracts the value of type T from a {@code Movie} object.
+     * @return an instance of the {@code Statistics} class containing the min, max, and average values.
+     * @throws IllegalArgumentException if the provided extractor is null.
+     * @see Statistics
+     */
+    @Override
+    public <T extends Comparable<T>> Statistics<T> getStatistics(Function<Movie, T> extractor) {
+        if(extractor == null) {
+            throw new IllegalArgumentException("Extractor is null");
+        }
+
+        var movies = movieRepository.getMovies();
+
+        T min = movies
+                .stream()
+                .map(extractor)
+                .min(Comparator.naturalOrder())
+                .orElse(null);
+
+        T max = movies
+                .stream()
+                .map(extractor)
+                .max(Comparator.naturalOrder())
+                .orElse(null);
+
+        BigDecimal avg = movies
+                .stream()
+                .map(extractor)
+                // Leave only numbers
+                .filter(Number.class::isInstance)
+                // Convert to BigDecimal
+                .map(v -> {
+                    if (v instanceof BigDecimal vv) {
+                        return vv;
+                    }
+                    return new BigDecimal(v.toString());
+                })
+                // Sum all the numbers
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                // Divide by the number of elements to get the average
+                .divide(BigDecimal.valueOf(movies.size()), RoundingMode.HALF_UP);
+
+        return new Statistics<>(min, max, avg);
     }
 }
