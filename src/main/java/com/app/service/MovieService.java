@@ -8,9 +8,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public interface MovieService {
-    List<Movie> sortBy(Comparator<Movie>movieComparator);
+    List<Movie> sortBy(Comparator<Movie> movieComparator);
+    List<Movie> findAllBy(Predicate<Movie> predicate);
     <T> Map<T, Long> countBy(Function<Movie, T> classifier);
     <T, U> Map<T, MinMax<List<Movie>>> groupAndFindMinMaxByCriteria(Function<Movie, T> groupingFunction,
             Function<Movie, U> minMaxGroupingFunction, Comparator<U> minMaxComparator);

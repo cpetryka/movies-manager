@@ -40,4 +40,15 @@ public class Movie {
                 .rating(this.rating)
                 .build();
     }
+
+    /**
+     * Checks if the movie's release date is within the specified range.
+     *
+     * @param minDate The minimum date in the range.
+     * @param maxDate The maximum date in the range.
+     * @return true if the movie's release date is within the range, false otherwise.
+     */
+    public boolean hasReleaseDateBetween(LocalDate minDate, LocalDate maxDate) {
+        return this.releaseDate.isAfter(minDate) && this.releaseDate.isBefore(maxDate);
+    }
 }

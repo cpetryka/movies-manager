@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,25 @@ public class MovieServiceImpl implements MovieService {
                 .getMovies()
                 .stream()
                 .sorted(movieComparator)
+                .toList();
+    }
+
+    /**
+     * Finds and returns a list of {@code Movie} objects that match the specified criterion.
+     *
+     * @param moviePredicate The predicate used to test each {@code Movie} object.
+     * @return A list of {@code Movie} objects that match the specified criterion.
+     */
+    @Override
+    public List<Movie> findAllBy(Predicate<Movie> moviePredicate) {
+        if(moviePredicate == null) {
+            throw new IllegalArgumentException("Movie predicate is null");
+        }
+
+        return movieRepository
+                .getMovies()
+                .stream()
+                .filter(moviePredicate)
                 .toList();
     }
 
