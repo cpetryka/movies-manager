@@ -173,4 +173,23 @@ public class MovieServiceImpl implements MovieService {
 
         return new Statistics<>(min, max, avg);
     }
+
+    /**
+     * Sorts cast members list of each {@code Movie} object based on the provided comparator.
+     *
+     * @param castComparator A Comparator<String> used to sort the cast members list of each movie.
+     * @return A list of {@code Movie} objects with sorted cast members lists.
+     */
+    @Override
+    public List<Movie> sortCast(Comparator<String> castComparator) {
+        if(castComparator == null) {
+            throw new IllegalArgumentException("Cast comparator is null");
+        }
+
+        return movieRepository
+                .getMovies()
+                .stream()
+                .map(movie -> movie.sortCast(castComparator))
+                .toList();
+    }
 }
