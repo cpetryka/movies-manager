@@ -213,6 +213,14 @@ public class MovieServiceImpl implements MovieService {
                 .toList();
     }
 
+    /**
+     * Returns a map where each key is a cast member and the value is a list of {@code Movie} objects
+     * that have this cast member. The map is sorted based on the provided comparator for value.
+     *
+     * @param moviesComparator The comparator used to sort the map values.
+     * @return A map where keys are cast members and values are lists of movies sorted based on the given comparator.
+     * @throws IllegalArgumentException if the provided movies comparator is null.
+     */
     @Override
     public Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator) {
         if(moviesComparator == null) {
@@ -246,6 +254,14 @@ public class MovieServiceImpl implements MovieService {
                 ));
     }
 
+    /**
+     * Finds and returns a list of {@code Movie} objects that are closest to the specified criterion based on the
+     * provided comparator. In case more than one movie matches the criteria equally, all such movies are returned.
+     *
+     * @param movieComparator The criterion for finding the closest {@code Movie} objects.
+     * @return A list of {@code Movie} objects that are closest to the specified criterion.
+     * @throws IllegalArgumentException if the provided movie comparator is null.
+     */
     @Override
     public List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator) {
         if(movieComparator == null) {
