@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static com.app.model.Mappers.toCastMapper;
 
 @Service
 @RequiredArgsConstructor
@@ -211,5 +211,38 @@ public class MovieServiceImpl implements MovieService {
                 .stream()
                 .map(movie -> movie.sortCast(castComparator))
                 .toList();
+    }
+
+    @Override
+    public Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator) {
+        if(moviesComparator == null) {
+            throw new IllegalArgumentException("Movies comparator is null");
+        }
+
+        return movieRepository
+                .getMovies()
+                .stream()
+                // Convert each movie to a list of entries where each entry is a cast member and the movie
+                .flatMap(movie -> toCastMapper
+                        .apply(movie)
+                        .stream()
+                        .map(castMember -> new AbstractMap.SimpleEntry<>(castMember, movie))
+                )
+                // Group by cast member
+                .collect(Collectors.groupingBy(
+                        Map.Entry::getKey,
+                        // Map each cast member to a list of movies
+                        Collectors.mapping(Map.Entry::getValue, Collectors.toList())
+                ))
+                .entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(moviesComparator))
+                // Convert to a LinkedHashMap to preserve the order
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (v1, v2) -> v1,
+                        LinkedHashMap::new
+                ));
     }
 }
