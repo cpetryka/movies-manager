@@ -19,4 +19,5 @@ public interface MovieService {
     <T extends Comparable<T>> Statistics<T> getStatistics(Function<Movie, T> extractor);
     List<Movie> sortCast(Comparator<String> castComparator);
     Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator);
+    List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator);
 }

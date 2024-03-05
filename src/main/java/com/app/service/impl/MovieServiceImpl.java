@@ -245,4 +245,23 @@ public class MovieServiceImpl implements MovieService {
                         LinkedHashMap::new
                 ));
     }
+
+    @Override
+    public List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator) {
+        if(movieComparator == null) {
+            throw new IllegalArgumentException("Movie comparator is null");
+        }
+
+        var movies = movieRepository.getMovies();
+
+        var minMovie = movies
+                .stream()
+                .min(movieComparator)
+                .orElseThrow(() -> new IllegalStateException("Cannot find movies by criteria"));
+
+        return movies
+                .stream()
+                .filter(movie -> movieComparator.compare(movie, minMovie) == 0)
+                .toList();
+    }
 }

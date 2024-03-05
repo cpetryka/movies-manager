@@ -51,4 +51,14 @@ public class Movie {
     public boolean hasReleaseDateBetween(LocalDate minDate, LocalDate maxDate) {
         return this.releaseDate.isAfter(minDate) && this.releaseDate.isBefore(maxDate);
     }
+
+    /**
+     * Calculates the difference between the movie's rating and another specified rating.
+     *
+     * @param otherRating The other specified rating.
+     * @return The difference between the movie's rating and the other specified rating.
+     */
+    public Double calculateRatingDifference(Double otherRating) {
+        return Math.abs(this.rating - otherRating);
+    }
 }
