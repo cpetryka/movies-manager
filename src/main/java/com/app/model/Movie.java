@@ -81,4 +81,19 @@ public class Movie {
 
         return matchesGenre && matchesReleaseDate && containsCastMembers && matchesDuration && matchesRating;
     }
+
+    /**
+     * Checks if the movie contains all the specified keywords.
+     *
+     * @param keywords The specified keywords.
+     * @return true if the movie contains all the keywords, false otherwise.
+     */
+    public boolean matchesKeywords(List<String> keywords) {
+        String selectedMovieDataString = this.title + " " + this.director + " " + this.cast;
+
+        return keywords
+                .stream()
+                // Convert the keywords to uppercase and check if the selected movie data string contains them.
+                .allMatch(keyword -> selectedMovieDataString.contains(keyword.toUpperCase()));
+    }
 }

@@ -82,6 +82,25 @@ class MovieServiceImplFindAllByTest {
                                 5.0
                         )),
                         List.of(MOVIE_1, MOVIE_4)
+                ),
+                Arguments.of(
+                        Predicates.matchesKeywordsPredicate(List.of(
+                                "JOHN"
+                        )),
+                        List.of()
+                ),
+                Arguments.of(
+                        Predicates.matchesKeywordsPredicate(List.of(
+                                "SPIDER MAN",
+                                "ZENDAYA"
+                        )),
+                        List.of(MOVIE_1)
+                ),
+                Arguments.of(
+                        Predicates.matchesKeywordsPredicate(List.of(
+                                "HOLLAND"
+                        )),
+                        List.of(MOVIE_1, MOVIE_4)
                 )
         );
     }
@@ -98,8 +117,8 @@ class MovieServiceImplFindAllByTest {
     @ParameterizedTest
     @DisplayName("when movie predicate is not null")
     @MethodSource("predicatesWithExpectedResultLists")
-    void test2(Predicate<Movie> moviePredicate, List<Movie> expectedResultList) {
+    void test2(Predicate<Movie> moviePredicate, List<Movie> expectedResult) {
         Assertions.assertThat(movieService.findAllBy(moviePredicate))
-                .isEqualTo(expectedResultList);
+                .isEqualTo(expectedResult);
     }
 }
