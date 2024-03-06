@@ -14,11 +14,6 @@ public class GsonConverter<T> implements JsonConverter<T> {
     private final Gson gson;
 
     @Override
-    public void toJson(T data, FileWriter writer) {
-        gson.toJson(data, writer);
-    }
-
-    @Override
     public T fromJson(FileReader reader, Class<T> tClass) {
         return gson.fromJson(reader, tClass);
     }
