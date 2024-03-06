@@ -1,5 +1,6 @@
 package com.app.model;
 
+import com.app.utils.MovieCriteria;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -60,5 +62,23 @@ public class Movie {
      */
     public Double calculateRatingDifference(Double otherRating) {
         return Math.abs(this.rating - otherRating);
+    }
+
+    /**
+     * Checks if the movie matches the specified criteria.
+     *
+     * @param movieCriteria The specified criteria.
+     * @return true if the movie matches the criteria, false otherwise.
+     */
+    public boolean matchesCriteria(MovieCriteria movieCriteria) {
+        var matchesGenre = this.genre.equals(movieCriteria.requiredGenre());
+        var matchesReleaseDate = this.releaseDate.isAfter(movieCriteria.requiredReleaseDateMin())
+                && this.releaseDate.isBefore(movieCriteria.requiredReleaseDateMax());
+        var containsCastMembers = new HashSet<>(this.cast).containsAll(movieCriteria.requiredCast());
+        var matchesDuration = this.duration >= movieCriteria.requiredDurationMin()
+                && this.duration <= movieCriteria.requiredDurationMax();
+        var matchesRating = this.rating >= movieCriteria.requiredRatingMin();
+
+        return matchesGenre && matchesReleaseDate && containsCastMembers && matchesDuration && matchesRating;
     }
 }

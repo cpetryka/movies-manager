@@ -1,12 +1,18 @@
 package com.app.service.impl;
 
+import com.app.model.Genre;
+import com.app.model.Movie;
 import com.app.model.Predicates;
 import com.app.repository.MovieRepository;
+import com.app.utils.MovieCriteria;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,6 +21,8 @@ import org.mockito.quality.Strictness;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static com.app.MoviesTestData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -35,6 +43,49 @@ class MovieServiceImplFindAllByTest {
                 .thenReturn(MOVIES_LIST);
     }
 
+    private static Stream<Arguments> predicatesWithExpectedResultLists() {
+        return Stream.of(
+                Arguments.of(
+                        Predicates.hasReleaseDateBetweenPredicate(
+                                LocalDate.of(2014, 1, 1),
+                                LocalDate.of(2018, 1, 1)
+                        ),
+                        List.of()
+                ),
+                Arguments.of(
+                        Predicates.hasReleaseDateBetweenPredicate(
+                                LocalDate.of(2022, 1, 1),
+                                LocalDate.of(2024, 1, 1)
+                        ),
+                        List.of(MOVIE_3, MOVIE_4)
+                ),
+                Arguments.of(
+                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                                Genre.ACTION,
+                                LocalDate.of(2021, 10, 10),
+                                LocalDate.of(2024, 10, 10),
+                                List.of("TOM HOLLAND"),
+                                140,
+                                150,
+                                8.8
+                        )),
+                        List.of()
+                ),
+                Arguments.of(
+                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                                Genre.ACTION,
+                                LocalDate.of(2021, 10, 10),
+                                LocalDate.of(2024, 10, 10),
+                                List.of("TOM HOLLAND"),
+                                110,
+                                150,
+                                5.0
+                        )),
+                        List.of(MOVIE_1, MOVIE_4)
+                )
+        );
+    }
+
     @Test
     @DisplayName("when movie predicate is null")
     void test1() {
@@ -43,25 +94,12 @@ class MovieServiceImplFindAllByTest {
                 .hasMessage("Movie predicate is null");
     }
 
-    @Test
-    @DisplayName("when movies don't contain release date in provided range")
-    void test2() {
-        Assertions.assertThat(movieService.findAllBy(
-                        Predicates.hasReleaseDateBetweenPredicate(
-                                LocalDate.of(2014, 1, 1),
-                                LocalDate.of(2018, 1, 1)
-                        )))
-                .isEmpty();
-    }
 
-    @Test
-    @DisplayName("when movies contain release date in provided range")
-    void test3() {
-        Assertions.assertThat(movieService.findAllBy(
-                        Predicates.hasReleaseDateBetweenPredicate(
-                                LocalDate.of(2022, 1, 1),
-                                LocalDate.of(2024, 1, 1)
-                        )))
-                .isEqualTo(List.of(MOVIE_3, MOVIE_4));
+    @ParameterizedTest
+    @DisplayName("when movie predicate is not null")
+    @MethodSource("predicatesWithExpectedResultLists")
+    void test2(Predicate<Movie> moviePredicate, List<Movie> expectedResultList) {
+        Assertions.assertThat(movieService.findAllBy(moviePredicate))
+                .isEqualTo(expectedResultList);
     }
 }
