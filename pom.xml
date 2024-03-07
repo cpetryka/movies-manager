@@ -18,6 +18,7 @@
         <lombok.version>1.18.30</lombok.version>
         <gson.version>2.10.1</gson.version>
         <spring.version>6.1.4</spring.version>
+        <j2html.version>1.6.0</j2html.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <junit.platform.runner.version>1.10.2</junit.platform.runner.version>
         <asserj.version>3.25.3</asserj.version>
@@ -68,6 +69,16 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+        </dependency>
+
+        <!--
+            ========================================================================================================
+            GENERATING HTML
+            ========================================================================================================
+        -->
+        <dependency>
+            <groupId>com.j2html</groupId>
+            <artifactId>j2html</artifactId>
         </dependency>
 
         <!--
@@ -131,6 +142,12 @@
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.j2html</groupId>
+                <artifactId>j2html</artifactId>
+                <version>${j2html.version}</version>
             </dependency>
 
             <dependency>
