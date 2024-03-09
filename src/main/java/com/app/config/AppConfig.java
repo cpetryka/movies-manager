@@ -20,7 +20,7 @@ import java.time.LocalDate;
 @PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
 public class AppConfig {
-    private Environment environment;
+    private final Environment environment;
 
     @Bean
     public Gson gson() {
