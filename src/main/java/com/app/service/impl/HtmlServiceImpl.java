@@ -1,12 +1,14 @@
 package com.app.service.impl;
 
 import com.app.service.HtmlService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
 import static j2html.TagCreator.*;
 
+@Service
 public class HtmlServiceImpl implements HtmlService {
     private static final String BOX_ATTRS = ".box";
     private static final String BOX_HEADING_ATTRS = ".box-heading";
