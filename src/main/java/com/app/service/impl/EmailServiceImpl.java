@@ -19,6 +19,10 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void send(String emailTo, String subject, String content) {
+        if(emailTo == null || emailTo.isEmpty()) {
+            throw new IllegalArgumentException("Email to is null or empty");
+        }
+
         var email = EmailBuilder
                 .startingBlank()
                 .from(emailFrom)
