@@ -286,9 +286,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
-                <configuration>
+                <!--<configuration>
                     <argLine>-XX:+EnableDynamicAgentLoading</argLine>
-                </configuration>
+                </configuration>-->
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
