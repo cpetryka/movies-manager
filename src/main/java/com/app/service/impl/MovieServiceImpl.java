@@ -305,6 +305,27 @@ public class MovieServiceImpl implements MovieService {
 
         var htmlContent = """
                 <html>
+                    <head>
+                        <style>
+                            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+                            
+                            body {
+                                font-family: "Roboto", Arial, sans-serif;
+                            }
+                            
+                            .box-heading {
+                                font-style: italic;
+                                margin-bottom: 0;
+                                margin-top: 24px;
+                            }
+                            
+                            .box-content ol {
+                                margin-top: 6px;
+                                padding-left: 22px;
+                                font-size: 13px;
+                            }
+                        </style>
+                    </head>
                     <body>
                         <main id="main">
                             %s%n
@@ -322,10 +343,10 @@ public class MovieServiceImpl implements MovieService {
                 <html>
             """.formatted(
                 htmlService.manyToHtml("Movies sorted by title", sortBy(byTitleComparator)),
-                htmlService.manyToHtml("Movies with release date between 01.01.2020 and 01.01.2022",
+                htmlService.manyToHtml("Movies with release date between 01.01.2022 and 01.01.2024",
                         findAllBy(hasReleaseDateBetweenPredicate(
-                            LocalDate.of(2020, 1, 1),
-                            LocalDate.of(2022, 1, 1)
+                            LocalDate.of(2022, 1, 1),
+                            LocalDate.of(2024, 1, 1)
                         ))),
                 htmlService.pairsToHtml("Movies counted by their genre", countBy(toGenreMapper)),
                 htmlService.pairsToHtml("The best and the worst movie in a certain genre",
@@ -335,8 +356,8 @@ public class MovieServiceImpl implements MovieService {
                         sortCast(Comparator.naturalOrder())),
                 htmlService.pairsToHtml("Movies grouped by cast members",
                         groupByCastMembers(Comparator.comparing(List::size))),
-                htmlService.manyToHtml("Movies with rating closest to 8.0",
-                        findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(8.0)))),
+                htmlService.manyToHtml("Movies with rating closest to 6.0",
+                        findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(6.0)))),
                 htmlService.manyToHtml("Movies matching the provided criteria",
                         findAllBy(Predicates.matchesCriteriaPredicate(new MovieCriteria(
                             Genre.ACTION,
