@@ -20,4 +20,5 @@ public interface MovieService {
     List<Movie> sortCast(Comparator<String> castComparator);
     Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator);
     List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator);
+    void sendReportByEmail(String emailTo, String subject);
 }

@@ -1,26 +1,36 @@
 package com.app.service.impl;
 
+import com.app.model.Genre;
 import com.app.model.Movie;
+import com.app.model.Predicates;
 import com.app.repository.MovieRepository;
+import com.app.service.EmailService;
+import com.app.service.HtmlService;
 import com.app.service.MovieService;
 import com.app.utils.MinMax;
+import com.app.utils.MovieCriteria;
 import com.app.utils.Statistics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.app.model.Mappers.toCastMapper;
+import static com.app.model.Comparators.byTitleComparator;
+import static com.app.model.Mappers.*;
+import static com.app.model.Predicates.hasReleaseDateBetweenPredicate;
 
 @Service
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private final HtmlService htmlService;
+    private final EmailService emailService;
 
     /**
      * Sorts a list of {@code Movie} objects based on the provided criterion.
@@ -279,5 +289,69 @@ public class MovieServiceImpl implements MovieService {
                 .stream()
                 .filter(movie -> movieComparator.compare(movie, minMovie) == 0)
                 .toList();
+    }
+
+    /**
+     * Sends a report (containing the results of all service methods) to the specified email address.
+     *
+     * @param emailTo The email address to which the report will be sent.
+     * @param subject The subject of the report.
+     */
+    @Override
+    public void sendReportByEmail(String emailTo, String subject) {
+        if(emailTo == null || emailTo.isEmpty()) {
+            throw new IllegalArgumentException("Email to is null or empty");
+        }
+
+        var htmlContent = """
+                <html>
+                    <body>
+                        <main id="main">
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                            %s%n
+                        </main>
+                    </body>
+                <html>
+            """.formatted(
+                htmlService.manyToHtml("Movies sorted by title", sortBy(byTitleComparator)),
+                htmlService.manyToHtml("Movies with release date between 01.01.2020 and 01.01.2022",
+                        findAllBy(hasReleaseDateBetweenPredicate(
+                            LocalDate.of(2020, 1, 1),
+                            LocalDate.of(2022, 1, 1)
+                        ))),
+                htmlService.pairsToHtml("Movies counted by their genre", countBy(toGenreMapper)),
+                htmlService.pairsToHtml("The best and the worst movie in a certain genre",
+                        groupAndFindMinMaxByCriteria(toGenreMapper, toRatingMapper, Comparator.naturalOrder())),
+                htmlService.oneToHtml("Statistics based on average rating", getStatistics(toRatingMapper)),
+                htmlService.manyToHtml("Movies with their cast sorted in a natural order",
+                        sortCast(Comparator.naturalOrder())),
+                htmlService.pairsToHtml("Movies grouped by cast members",
+                        groupByCastMembers(Comparator.comparing(List::size))),
+                htmlService.manyToHtml("Movies with rating closest to 8.0",
+                        findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(8.0)))),
+                htmlService.manyToHtml("Movies matching the provided criteria",
+                        findAllBy(Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                            Genre.ACTION,
+                            LocalDate.of(2021, 10, 10),
+                            LocalDate.of(2024, 10, 10),
+                            List.of("TOM HOLLAND"),
+                            110,
+                            150,
+                            5.0
+                        )))),
+                htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
+                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))
+                )
+        );
+
+        emailService.send(emailTo, subject, htmlContent);
     }
 }
