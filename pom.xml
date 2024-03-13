@@ -24,6 +24,7 @@
         <disruptor.version>4.0.0</disruptor.version>
         <j2html.version>1.6.0</j2html.version>
         <simple.java.mail.version>8.6.3</simple.java.mail.version>
+        <html2pdf.version>5.0.3</html2pdf.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <junit.platform.runner.version>1.10.2</junit.platform.runner.version>
         <asserj.version>3.25.3</asserj.version>
@@ -104,7 +105,7 @@
 
         <!--
             ========================================================================================================
-            GENERATING HTML AND SENDING EMAILS
+            GENERATING HTML, SENDING EMAILS AND GENERATING PDF FILES
             ========================================================================================================
         -->
         <dependency>
@@ -114,6 +115,10 @@
         <dependency>
             <groupId>org.simplejavamail</groupId>
             <artifactId>simple-java-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>html2pdf</artifactId>
         </dependency>
 
         <!--
@@ -214,6 +219,11 @@
                 <groupId>org.simplejavamail</groupId>
                 <artifactId>simple-java-mail</artifactId>
                 <version>${simple.java.mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.itextpdf</groupId>
+                <artifactId>html2pdf</artifactId>
+                <version>${html2pdf.version}</version>
             </dependency>
 
             <dependency>
