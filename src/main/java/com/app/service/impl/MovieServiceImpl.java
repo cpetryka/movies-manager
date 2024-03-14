@@ -301,27 +301,30 @@ public class MovieServiceImpl implements MovieService {
                 <html>
                     <head>
                         <style>
-                            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-                            
                             body {
-                                font-family: "Roboto", Arial, sans-serif;
+                                font-family: Arial, Helvetica, sans-serif;
+                                font-size: 13px;
                             }
-                            
+
                             .box-heading {
                                 font-style: italic;
                                 margin-bottom: 0;
                                 margin-top: 24px;
                             }
-                            
+
+                            .box-content p {
+                                margin-top: 6px;
+                            }
+
                             .box-content ol {
                                 margin-top: 6px;
                                 padding-left: 22px;
-                                font-size: 13px;
                             }
                         </style>
                     </head>
                     <body>
                         <main id="main">
+                            <h1>Complete movies report</h1>
                             %s%n
                             %s%n
                             %s%n
