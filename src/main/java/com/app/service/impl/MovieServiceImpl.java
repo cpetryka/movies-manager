@@ -7,6 +7,7 @@ import com.app.repository.MovieRepository;
 import com.app.service.EmailService;
 import com.app.service.HtmlService;
 import com.app.service.MovieService;
+import com.app.service.PdfService;
 import com.app.utils.MinMax;
 import com.app.utils.MovieCriteria;
 import com.app.utils.Statistics;
@@ -31,6 +32,7 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
     private final HtmlService htmlService;
     private final EmailService emailService;
+    private final PdfService pdfService;
 
     /**
      * Sorts a list of {@code Movie} objects based on the provided criterion.
@@ -387,6 +389,24 @@ public class MovieServiceImpl implements MovieService {
                 emailTo,
                 subject,
                 generateReportInHtmlFormat()
+        );
+    }
+
+    /**
+     * Saves a report (containing the results of all service methods) as a PDF file at the specified path.
+     *
+     * @param pdfFilePath The path where the PDF file will be saved.
+     * @throws IllegalArgumentException if the provided PDF file path is null or empty.
+     */
+    @Override
+    public void saveReportAsPdf(String pdfFilePath) {
+        if(pdfFilePath == null || pdfFilePath.isEmpty()) {
+            throw new IllegalArgumentException("PDF file path is null or empty");
+        }
+
+        pdfService.convertHtmlContentToPdfFile(
+                generateReportInHtmlFormat(),
+                pdfFilePath
         );
     }
 }

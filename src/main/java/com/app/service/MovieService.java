@@ -21,4 +21,5 @@ public interface MovieService {
     Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator);
     List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator);
     void sendReportByEmail(String emailTo, String subject);
+    void saveReportAsPdf(String pdfFilePath);
 }
