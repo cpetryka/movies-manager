@@ -292,18 +292,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     /**
-     * Sends a report (containing the results of all service methods) to the specified email address.
+     * Generates a report containing the results of all service methods in HTML format.
      *
-     * @param emailTo The email address to which the report will be sent.
-     * @param subject The subject of the report.
+     * @return A string containing the report in HTML format.
      */
-    @Override
-    public void sendReportByEmail(String emailTo, String subject) {
-        if(emailTo == null || emailTo.isEmpty()) {
-            throw new IllegalArgumentException("Email to is null or empty");
-        }
-
-        var htmlContent = """
+    private String generateReportInHtmlFormat() {
+        return """
                 <html>
                     <head>
                         <style>
@@ -345,8 +339,8 @@ public class MovieServiceImpl implements MovieService {
                 htmlService.manyToHtml("Movies sorted by title", sortBy(byTitleComparator)),
                 htmlService.manyToHtml("Movies with release date between 01.01.2022 and 01.01.2024",
                         findAllBy(hasReleaseDateBetweenPredicate(
-                            LocalDate.of(2022, 1, 1),
-                            LocalDate.of(2024, 1, 1)
+                                LocalDate.of(2022, 1, 1),
+                                LocalDate.of(2024, 1, 1)
                         ))),
                 htmlService.pairsToHtml("Movies counted by their genre", countBy(toGenreMapper)),
                 htmlService.pairsToHtml("The best and the worst movie in a certain genre",
@@ -360,19 +354,36 @@ public class MovieServiceImpl implements MovieService {
                         findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(6.0)))),
                 htmlService.manyToHtml("Movies matching the provided criteria",
                         findAllBy(Predicates.matchesCriteriaPredicate(new MovieCriteria(
-                            Genre.ACTION,
-                            LocalDate.of(2021, 10, 10),
-                            LocalDate.of(2024, 10, 10),
-                            List.of("TOM HOLLAND"),
-                            110,
-                            150,
-                            5.0
+                                Genre.ACTION,
+                                LocalDate.of(2021, 10, 10),
+                                LocalDate.of(2024, 10, 10),
+                                List.of("TOM HOLLAND"),
+                                110,
+                                150,
+                                5.0
                         )))),
                 htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
                         findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))
                 )
         );
+    }
 
-        emailService.send(emailTo, subject, htmlContent);
+    /**
+     * Sends a report (containing the results of all service methods) to the specified email address.
+     *
+     * @param emailTo The email address to which the report will be sent.
+     * @param subject The subject of the report.
+     */
+    @Override
+    public void sendReportByEmail(String emailTo, String subject) {
+        if(emailTo == null || emailTo.isEmpty()) {
+            throw new IllegalArgumentException("Email to is null or empty");
+        }
+
+        emailService.send(
+                emailTo,
+                subject,
+                generateReportInHtmlFormat()
+        );
     }
 }
