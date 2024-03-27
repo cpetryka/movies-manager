@@ -24,7 +24,7 @@ public class Movie {
     final int duration;
     final double rating;
     @ToString.Exclude
-    final String imdbId;
+    final String tmdbId;
 
     /**
      * Creates a new {@code Movie} instance with sorted cast members based on the provided {@code Comparator}.
@@ -42,7 +42,7 @@ public class Movie {
                 .cast(this.cast.stream().sorted(castComparator).toList())
                 .duration(this.duration)
                 .rating(this.rating)
-                .imdbId(this.imdbId)
+                .tmdbId(this.tmdbId)
                 .build();
     }
 

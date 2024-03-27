@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record MovieData(String title, Genre genre, String director, LocalDate releaseDate,
-                        List<String> cast, int duration, double rating, String imdbId) {
+                        List<String> cast, int duration, double rating, String tmdbId) {
     public Movie toMovie() {
         return Movie
                 .builder()
@@ -18,7 +18,7 @@ public record MovieData(String title, Genre genre, String director, LocalDate re
                 .cast(cast)
                 .duration(duration)
                 .rating(rating)
-                .imdbId(imdbId)
+                .tmdbId(tmdbId)
                 .build();
     }
 }
