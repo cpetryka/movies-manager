@@ -3,6 +3,7 @@ package com.app.repository.impl;
 import com.app.converter.movie.FileToMoviesConverter;
 import com.app.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -55,9 +56,18 @@ class MovieRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("when getMovies method works correctly")
     void test1() {
         assertThat(movieRepository.getMovies())
                 .hasSize(2)
                 .isEqualTo(List.of(MOVIE_1, MOVIE_2));
+    }
+
+    @Test
+    @DisplayName("when getMoviesByTitle method works correctly")
+    void test2() {
+        assertThat(movieRepository.getMoviesByTitle("SPIDER MAN NO WAY HOME"))
+                .hasSize(1)
+                .isEqualTo(List.of(MOVIE_1));
     }
 }
