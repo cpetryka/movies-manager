@@ -2,7 +2,6 @@ package com.app.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
-import lombok.ToString;
 
 @AllArgsConstructor
 public class ProductionCompany {
@@ -16,9 +15,9 @@ public class ProductionCompany {
 
     @Override
     public String toString() {
-        return "ProductionCompany{" +
+        return "ProductionCompany(" +
                 "name='" + name + '\'' +
                 ", originCountry='" + getNotEmptyOriginCountry() + '\'' +
-                '}';
+                ')';
     }
 }
