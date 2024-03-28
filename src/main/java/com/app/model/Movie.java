@@ -99,4 +99,14 @@ public class Movie {
                 // Convert the keywords to uppercase and check if the selected movie data string contains them.
                 .allMatch(keyword -> selectedMovieDataString.contains(keyword.toUpperCase()));
     }
+
+    /**
+     * Checks if the movie's title is equal to the specified title.
+     *
+     * @param title The specified title.
+     * @return true if the movie's title is equal to the specified title, false otherwise.
+     */
+    public boolean isTitleEqualTo(String title) {
+        return this.title.equals(title);
+    }
 }

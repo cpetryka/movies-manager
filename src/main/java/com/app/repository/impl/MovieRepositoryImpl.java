@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,5 +30,13 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     public List<Movie> getMovies() {
         return movies;
+    }
+
+    @Override
+    public List<Movie> getMoviesByTitle(String title) {
+        return movies
+                .stream()
+                .filter(movie -> movie.isTitleEqualTo(title))
+                .toList();
     }
 }
