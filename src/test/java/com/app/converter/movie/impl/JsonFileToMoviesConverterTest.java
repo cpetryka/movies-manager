@@ -70,7 +70,8 @@ class JsonFileToMoviesConverterTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 148,
-                                8.5
+                                8.5,
+                                "634649"
                         )
                 )));
 

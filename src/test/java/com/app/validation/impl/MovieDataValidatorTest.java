@@ -42,7 +42,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 148,
-                                8.5
+                                8.5,
+                                "634649"
                         ),
                         Map.of("title", "string does not match regex: SPIDER MAN NO WAY HOMe")
                 ),
@@ -58,7 +59,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 148,
-                                8.5
+                                8.5,
+                                "634649"
                         ),
                         Map.of("director", "string does not match regex: JON WATTs")
                 ),
@@ -74,7 +76,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 148,
-                                8.5
+                                8.5,
+                                "634649"
                         ),
                         Map.of("cast", "not all items match regex: [TOM HOLLANd, ZENDAYA, BENEDICT CUMBERBATCH]")
                 ),
@@ -90,7 +93,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 0,
-                                8.5
+                                8.5,
+                                "634649"
                         ),
                         Map.of("duration", "value must be positive: 0")
                 ),
@@ -106,7 +110,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 148,
-                                10.5
+                                10.5,
+                                "634649"
                         ),
                         Map.of("rating", "value should be in range [0.0; 10.0]: 10.5")
                 ),
@@ -122,7 +127,8 @@ class MovieDataValidatorTest {
                                         "BENEDICT CUMBERBATCH"
                                 ),
                                 -10,
-                                -5.5
+                                -5.5,
+                                "634649"
                         ),
                         Map.of(
                                 "title", "string does not match regex: SPIDER MAN NO WAY HOMe",

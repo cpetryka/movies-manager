@@ -22,7 +22,8 @@ public interface MoviesTestData {
                     "BENEDICT CUMBERBATCH"
             ),
             148,
-            8.5
+            8.5,
+            "634649"
     );
 
     Movie MOVIE_1 = MOVIE_1_DATA.toMovie();
@@ -37,7 +38,8 @@ public interface MoviesTestData {
                     "HERO FIENNES TIFFIN"
             ),
             105,
-            5.4
+            5.4,
+            "537915"
     );
 
     Movie MOVIE_2 = MOVIE_2_DATA.toMovie();
@@ -53,7 +55,8 @@ public interface MoviesTestData {
                     "LUNA LAUREN VELEZ"
             ),
             128,
-            6.4
+            6.4,
+            "667538"
     );
 
     Movie MOVIE_3 = MOVIE_3_DATA.toMovie();
@@ -69,7 +72,8 @@ public interface MoviesTestData {
                     "SOPHIA ALI"
             ),
             116,
-            6.4
+            6.4,
+            "335787"
     );
 
     Movie MOVIE_4 = MOVIE_4_DATA.toMovie();
@@ -85,7 +89,8 @@ public interface MoviesTestData {
                     "BLYTHE DANNER"
             ),
             101,
-            7.0
+            7.0,
+            "77877"
     );
 
     Movie MOVIE_5 = MOVIE_5_DATA.toMovie();
