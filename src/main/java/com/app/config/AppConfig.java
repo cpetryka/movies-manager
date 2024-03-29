@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import java.net.ProxySelector;
+import java.net.http.HttpClient;
 import java.time.LocalDate;
 
 @Configuration
@@ -28,6 +30,14 @@ public class AppConfig {
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
                 .create();
+    }
+
+    @Bean
+    public HttpClient httpClient() {
+        return HttpClient
+                .newBuilder()
+                .proxy(ProxySelector.getDefault())
+                .build();
     }
 
     @Bean
