@@ -31,4 +31,21 @@ Tests are written using **JUnit** and can be run with Maven by executing the _mv
 
 ## Documentation
 **All methods and functionalities are thoroughly documented** in the code. For further details, please refer to 
-the inline comments and documentation provided within each method in all service classes. 
+the inline comments and documentation provided within each method in all service classes.
+
+
+## Project Usage
+Before running the application, please ensure that:
+
+1. You added a json file with data about movies to the main directory.
+2. You added an _application.properties_ file to the resources directory with the following properties:
+    - _movies.data.filename_ - the name of the json file storing data about movies,
+    - _validation.regex_ - the regex pattern for validating data about each movie,
+     - _email.host_ - the host of the email server,
+    - _email.port_ - the port of the email server,
+    - _email.username_ - the username of the email account,
+    - _email.password_ - the password of the email account,
+    - _email.from_ - the email address from which the reports will be sent,
+    - _tmdb.api.key_ - the API key for The Movie Database (TMDB) API.
+
+To run the application, execute the _main_ method in the _App_ class.
