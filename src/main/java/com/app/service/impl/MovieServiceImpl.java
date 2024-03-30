@@ -2,16 +2,16 @@ package com.app.service.impl;
 
 import com.app.model.Genre;
 import com.app.model.Movie;
+import com.app.model.MovieAdditionalInfo;
 import com.app.model.Predicates;
 import com.app.repository.MovieRepository;
-import com.app.service.EmailService;
-import com.app.service.HtmlService;
-import com.app.service.MovieService;
-import com.app.service.PdfService;
+import com.app.service.*;
 import com.app.utils.MinMax;
 import com.app.utils.MovieCriteria;
 import com.app.utils.Statistics;
+import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,9 +30,13 @@ import static com.app.model.Predicates.hasReleaseDateBetweenPredicate;
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
+    private final HttpClientService httpClientService;
     private final HtmlService htmlService;
     private final EmailService emailService;
     private final PdfService pdfService;
+
+    @Value("${tmdb.api.key}")
+    private String tmdbApiKey;
 
     /**
      * Sorts a list of {@code Movie} objects based on the provided criterion.
@@ -290,6 +294,24 @@ public class MovieServiceImpl implements MovieService {
         return movies
                 .stream()
                 .filter(movie -> movieComparator.compare(movie, minMovie) == 0)
+                .toList();
+    }
+
+    /**
+     * Retrieves additional information about a movie from the external API based on the movie title.
+     *
+     * @param title The title of the movie for which additional information will be retrieved.
+     * @return A list of {@code MovieAdditionalInfo} objects containing additional information about the movie.
+     */
+    @Override
+    public List<MovieAdditionalInfo> getAdditionalInfoAboutMovieByTitle(String title) {
+        return movieRepository
+                .getMoviesByTitle(title)
+                .stream()
+                .map(movie -> httpClientService.get(
+                        "https://api.themoviedb.org/3/movie/%s?api_key=%s".formatted(toTmdbIdMapper.apply(movie), tmdbApiKey),
+                        new TypeToken<MovieAdditionalInfo>() {}
+                ))
                 .toList();
     }
 

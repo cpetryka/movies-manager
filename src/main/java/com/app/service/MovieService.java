@@ -1,6 +1,7 @@
 package com.app.service;
 
 import com.app.model.Movie;
+import com.app.model.MovieAdditionalInfo;
 import com.app.utils.MinMax;
 import com.app.utils.Statistics;
 
@@ -20,6 +21,7 @@ public interface MovieService {
     List<Movie> sortCast(Comparator<String> castComparator);
     Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator);
     List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator);
+    List<MovieAdditionalInfo> getAdditionalInfoAboutMovieByTitle(String title);
     void sendReportByEmail(String emailTo, String subject);
     void saveReportAsPdf(String pdfFilePath);
 }
