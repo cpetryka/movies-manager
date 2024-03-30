@@ -84,7 +84,7 @@ class MovieServiceImplSendReportByEmailTest {
         verify(htmlService, times(1))
                 .oneToHtml(anyString(), any());
 
-        verify(htmlService, times(6))
+        verify(htmlService, times(7))
                 .manyToHtml(anyString(), anyList());
 
         verify(htmlService, times(3))
