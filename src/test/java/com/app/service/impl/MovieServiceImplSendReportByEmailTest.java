@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-class HtmlServiceImplSendReportByEmailTest {
+class MovieServiceImplSendReportByEmailTest {
     @Mock
     private MovieRepository movieRepository;
 
@@ -90,5 +90,4 @@ class HtmlServiceImplSendReportByEmailTest {
         verify(htmlService, times(3))
                 .pairsToHtml(anyString(), anyMap());
     }
-
 }
