@@ -359,6 +359,7 @@ public class MovieServiceImpl implements MovieService {
                             %s%n
                             %s%n
                             %s%n
+                            %s%n
                         </main>
                     </body>
                 <html>
@@ -390,8 +391,9 @@ public class MovieServiceImpl implements MovieService {
                                 5.0
                         )))),
                 htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
-                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))
-                )
+                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))),
+                htmlService.manyToHtml("Additional info about the movie 'UNCHARTED'",
+                        getAdditionalInfoAboutMovieByTitle("UNCHARTED"))
         );
     }
 
