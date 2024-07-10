@@ -1,5 +1,10 @@
 # Movie Manager
 
+## Project under development 🚀
+
+**In the near future, I plan to refactor my project to incorporate the Domain-Driven Design (DDD) approach.**
+
+## Brief description
 This project is a **comprehensive movie catalogue application**, designed to manage and analyze a collection of movies 
 **stored in a JSON file**. Leveraging the power of Java and the **Spring framework**, the project offers **a wide range 
 of functionalities** to sort, filter, and analyze movie data based on various criteria. 
