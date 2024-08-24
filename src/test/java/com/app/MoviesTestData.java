@@ -1,9 +1,9 @@
 package com.app;
 
-import com.app.json.model.MovieData;
-import com.app.json.model.MoviesData;
-import com.app.model.Genre;
-import com.app.model.Movie;
+import com.app.infrastructure.json.model.MovieData;
+import com.app.infrastructure.json.model.MoviesData;
+import com.app.domain.model.Genre;
+import com.app.domain.model.Movie;
 
 import java.time.LocalDate;
 import java.util.List;

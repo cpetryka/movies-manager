@@ -1,12 +1,13 @@
 package com.app.converter.movie.impl;
 
 import com.app.config.AppTestConfig;
-import com.app.converter.movie.FileToMoviesConverter;
-import com.app.json.deserializer.JsonDeserializer;
-import com.app.json.model.MovieData;
-import com.app.json.model.MoviesData;
-import com.app.model.Genre;
-import com.app.validation.Validator;
+import com.app.infrastructure.converter.movie.FileToMoviesConverter;
+import com.app.infrastructure.converter.movie.impl.JsonFileToMoviesConverter;
+import com.app.infrastructure.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.json.model.MovieData;
+import com.app.infrastructure.json.model.MoviesData;
+import com.app.domain.model.Genre;
+import com.app.application.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

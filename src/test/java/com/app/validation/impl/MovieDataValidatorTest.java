@@ -1,9 +1,9 @@
 package com.app.validation.impl;
 
 import com.app.config.AppTestConfig;
-import com.app.json.model.MovieData;
-import com.app.model.Genre;
-import com.app.validation.Validator;
+import com.app.infrastructure.json.model.MovieData;
+import com.app.domain.model.Genre;
+import com.app.application.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

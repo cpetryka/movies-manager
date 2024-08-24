@@ -1,5 +1,6 @@
 package com.app.service.impl;
 
+import com.app.application.service.impl.EmailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

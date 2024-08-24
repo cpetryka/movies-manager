@@ -1,21 +1,17 @@
 package com.app.validation;
 
-import com.app.MoviesTestData;
+import com.app.application.validation.Validator;
 import com.app.config.AppTestConfig;
-import com.app.json.model.MovieData;
-import com.app.model.Genre;
-import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Assertions;
+import com.app.infrastructure.json.model.MovieData;
+import com.app.domain.model.Genre;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 

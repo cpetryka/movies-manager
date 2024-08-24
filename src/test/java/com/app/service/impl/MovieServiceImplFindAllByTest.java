@@ -1,10 +1,11 @@
 package com.app.service.impl;
 
-import com.app.model.Genre;
-import com.app.model.Movie;
-import com.app.model.Predicates;
-import com.app.repository.MovieRepository;
-import com.app.utils.MovieCriteria;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.model.Genre;
+import com.app.domain.model.Movie;
+import com.app.domain.model.Predicates;
+import com.app.domain.repository.MovieRepository;
+import com.app.domain.utils.MovieCriteria;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

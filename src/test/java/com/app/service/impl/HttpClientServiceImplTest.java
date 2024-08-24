@@ -1,6 +1,7 @@
 package com.app.service.impl;
 
-import com.app.model.MovieAdditionalInfo;
+import com.app.application.service.impl.HttpClientServiceImpl;
+import com.app.domain.model.MovieAdditionalInfo;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.mockwebserver.MockResponse;

@@ -1,7 +1,8 @@
 package com.app.repository.impl;
 
-import com.app.converter.movie.FileToMoviesConverter;
-import com.app.repository.MovieRepository;
+import com.app.domain.repository.impl.MovieRepositoryImpl;
+import com.app.infrastructure.converter.movie.FileToMoviesConverter;
+import com.app.domain.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

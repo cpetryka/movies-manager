@@ -1,9 +1,10 @@
 package com.app.service.impl;
 
-import com.app.model.MovieAdditionalInfo;
-import com.app.model.ProductionCompany;
-import com.app.repository.MovieRepository;
-import com.app.service.HttpClientService;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.model.MovieAdditionalInfo;
+import com.app.domain.model.ProductionCompany;
+import com.app.domain.repository.MovieRepository;
+import com.app.application.service.HttpClientService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

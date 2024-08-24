@@ -1,7 +1,7 @@
 package com.app;
 
-import com.app.config.AppConfig;
-import com.app.service.impl.MovieServiceImpl;
+import com.app.infrastructure.config.AppConfig;
+import com.app.application.service.impl.MovieServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class App {
