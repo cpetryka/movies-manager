@@ -3,17 +3,13 @@ package com.app.application.validation.impl;
 import com.app.application.validation.Validator;
 import com.app.infrastructure.json.model.MovieData;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
 @RequiredArgsConstructor
 public class MovieDataValidator implements Validator<MovieData> {
-    @Value("${validation.regex}")
-    private String regex;
+    private final String regex;
 
     @Override
     public Map<String, String> validate(MovieData movieData) {

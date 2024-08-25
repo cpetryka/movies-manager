@@ -11,11 +11,16 @@ import com.app.application.validation.Validator;
 import com.app.application.validation.impl.MovieDataValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 import java.time.LocalDate;
 
+@RequiredArgsConstructor
 public class AppTestConfig {
+    private final Environment environment;
+
     @Bean
     public Gson gson() {
         return new GsonBuilder()
@@ -36,6 +41,6 @@ public class AppTestConfig {
 
     @Bean
     public Validator<MovieData> validator() {
-        return new MovieDataValidator();
+        return new MovieDataValidator("[A-Z\\d\\s]+");
     }
 }

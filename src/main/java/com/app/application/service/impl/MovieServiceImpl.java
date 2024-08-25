@@ -6,7 +6,6 @@ import com.app.domain.model.Movie;
 import com.app.domain.model.MovieAdditionalInfo;
 import com.app.domain.model.Predicates;
 import com.app.domain.repository.MovieRepository;
-import com.app.service.*;
 import com.app.domain.utils.MinMax;
 import com.app.domain.utils.MovieCriteria;
 import com.app.domain.utils.Statistics;

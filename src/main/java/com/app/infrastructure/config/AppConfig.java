@@ -1,6 +1,9 @@
 package com.app.infrastructure.config;
 
+import com.app.application.validation.Validator;
+import com.app.application.validation.impl.MovieDataValidator;
 import com.app.infrastructure.json.deserializer.custom.LocalDateDeserializer;
+import com.app.infrastructure.json.model.MovieData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -51,5 +54,10 @@ public class AppConfig {
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
                 .async()
                 .buildMailer();
+    }
+
+    @Bean
+    public Validator<MovieData> validator() {
+        return new MovieDataValidator(environment.getRequiredProperty("validation.regex"));
     }
 }
