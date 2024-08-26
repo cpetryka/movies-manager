@@ -22,7 +22,7 @@ public class Movie {
     final LocalDate releaseDate;
     final List<String> cast;
     final int duration;
-    final double rating;
+    final Rating rating;
     @ToString.Exclude
     final String tmdbId;
 
@@ -63,8 +63,8 @@ public class Movie {
      * @param otherRating The other specified rating.
      * @return The difference between the movie's rating and the other specified rating.
      */
-    public Double calculateRatingDifference(Double otherRating) {
-        return Math.abs(this.rating - otherRating);
+    public Double calculateRatingDifference(Rating otherRating) {
+        return Math.abs(this.rating.getAverageRating() - otherRating.getAverageRating());
     }
 
     /**
@@ -80,7 +80,7 @@ public class Movie {
         var containsCastMembers = new HashSet<>(this.cast).containsAll(movieCriteria.requiredCast());
         var matchesDuration = this.duration >= movieCriteria.requiredDurationMin()
                 && this.duration <= movieCriteria.requiredDurationMax();
-        var matchesRating = this.rating >= movieCriteria.requiredRatingMin();
+        var matchesRating = this.rating.getAverageRating() >= movieCriteria.requiredRatingMin();
 
         return matchesGenre && matchesReleaseDate && containsCastMembers && matchesDuration && matchesRating;
     }

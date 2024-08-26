@@ -1,10 +1,7 @@
 package com.app.application.service.impl;
 
 import com.app.application.service.*;
-import com.app.domain.model.Genre;
-import com.app.domain.model.Movie;
-import com.app.domain.model.MovieAdditionalInfo;
-import com.app.domain.model.Predicates;
+import com.app.domain.model.*;
 import com.app.domain.repository.MovieRepository;
 import com.app.domain.utils.MinMax;
 import com.app.domain.utils.MovieCriteria;
@@ -379,8 +376,8 @@ public class MovieServiceImpl implements MovieService {
                 htmlService.pairsToHtml("Movies grouped by cast members",
                         groupByCastMembers(Comparator.comparing(List::size))),
                 htmlService.manyToHtml("Movies with rating closest to 6.0",
-                        findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(6.0)))),
-                htmlService.manyToHtml("Movies matching the provided criteria",
+                        findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(Rating.of(RatingItem.SIX_STARS))))
+                ), htmlService.manyToHtml("Movies matching the provided criteria",
                         findAllBy(Predicates.matchesCriteriaPredicate(new MovieCriteria(
                                 Genre.ACTION,
                                 LocalDate.of(2021, 10, 10),
@@ -389,12 +386,9 @@ public class MovieServiceImpl implements MovieService {
                                 110,
                                 150,
                                 5.0
-                        )))),
-                htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
-                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))),
-                htmlService.manyToHtml("Additional info about the movie 'UNCHARTED'",
-                        getAdditionalInfoAboutMovieByTitle("UNCHARTED"))
-        );
+                        )))), htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
+                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))), htmlService.manyToHtml("Additional info about the movie 'UNCHARTED'",
+                        getAdditionalInfoAboutMovieByTitle("UNCHARTED")));
     }
 
     /**

@@ -11,6 +11,6 @@ public interface Mappers {
     Function<Movie, LocalDate> toReleaseDataMapper = movie -> movie.releaseDate;
     Function<Movie, List<String>> toCastMapper = movie -> movie.cast;
     Function<Movie, Integer> toDurationMapper = movie -> movie.duration;
-    Function<Movie, Double> toRatingMapper = movie -> movie.rating;
+    Function<Movie, Double> toRatingMapper = movie -> movie.rating.getAverageRating();
     Function<Movie, String> toTmdbIdMapper = movie -> movie.tmdbId;
 }

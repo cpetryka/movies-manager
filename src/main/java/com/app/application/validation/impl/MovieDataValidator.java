@@ -31,8 +31,8 @@ public class MovieDataValidator implements Validator<MovieData> {
             errors.put("duration", "value must be positive: " + movieData.duration());
         }
 
-        if(movieData.rating() < 0 || movieData.rating() > 10) {
-            errors.put("rating", "value should be in range [0.0; 10.0]: " + movieData.rating());
+        if(movieData.getAverageRating() < 0 || movieData.getAverageRating() > 10) {
+            errors.put("rating", "value should be in range [0.0; 10.0]: " + movieData.ratings());
         }
 
         return errors;
