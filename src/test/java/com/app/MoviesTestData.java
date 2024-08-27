@@ -22,7 +22,7 @@ public interface MoviesTestData {
                     "BENEDICT CUMBERBATCH"
             ),
             148,
-            8.5,
+            List.of(8.0, 9.0),
             "634649"
     );
 
@@ -38,7 +38,7 @@ public interface MoviesTestData {
                     "HERO FIENNES TIFFIN"
             ),
             105,
-            5.4,
+            List.of(4.0, 5.0, 6.0, 7.0, 5.0),
             "537915"
     );
 
@@ -55,7 +55,7 @@ public interface MoviesTestData {
                     "LUNA LAUREN VELEZ"
             ),
             128,
-            6.4,
+            List.of(6.0, 7.0, 8.0, 6.0, 5.0),
             "667538"
     );
 
@@ -72,7 +72,7 @@ public interface MoviesTestData {
                     "SOPHIA ALI"
             ),
             116,
-            6.4,
+            List.of(6.0, 7.0, 8.0, 6.0, 5.0),
             "335787"
     );
 
@@ -89,7 +89,7 @@ public interface MoviesTestData {
                     "BLYTHE DANNER"
             ),
             101,
-            7.0,
+            List.of(6.0, 8.0),
             "77877"
     );
 

@@ -2,6 +2,7 @@ package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
 import com.app.domain.model.Genre;
+import com.app.domain.model.RatingItem;
 import com.app.domain.repository.MovieRepository;
 import com.app.domain.utils.Statistics;
 import org.junit.jupiter.api.BeforeEach;

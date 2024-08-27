@@ -45,7 +45,7 @@ class ValidatorTest {
                         "BENEDICT CUMBERBATCH"
                 ),
                 148,
-                8.5,
+                List.of(8.0, 9.0),
                 "634649"
         );
 

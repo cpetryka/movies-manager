@@ -68,7 +68,7 @@ class MovieServiceImplFindAllByTest {
                                 List.of("TOM HOLLAND"),
                                 140,
                                 150,
-                                8.8
+                                9.2
                         )),
                         List.of()
                 ),
