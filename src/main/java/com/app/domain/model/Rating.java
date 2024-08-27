@@ -1,13 +1,16 @@
 package com.app.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.util.List;
 
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Rating {
     private final List<RatingItem> ratingItems;
-
-    public Rating(List<RatingItem> ratingItems) {
-        this.ratingItems = ratingItems;
-    }
 
     /**
      * Returns the average rating of the movie.

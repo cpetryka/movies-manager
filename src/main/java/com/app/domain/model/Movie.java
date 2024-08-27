@@ -13,7 +13,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @EqualsAndHashCode
-@ToString
 @Builder
 public class Movie {
     final String title;
@@ -23,7 +22,6 @@ public class Movie {
     final List<String> cast;
     final int duration;
     final Rating rating;
-    @ToString.Exclude
     final String tmdbId;
 
     /**
@@ -108,5 +106,18 @@ public class Movie {
      */
     public boolean isTitleEqualTo(String title) {
         return this.title.equals(title);
+    }
+
+    @Override
+    public String toString() {
+        return "Movie(" +
+                "title=" + title +
+                ", genre=" + genre +
+                ", director=" + director +
+                ", releaseDate=" + releaseDate +
+                ", cast=" + cast +
+                ", duration=" + duration +
+                ", rating=" + rating.getAverageRating() +
+                ')';
     }
 }

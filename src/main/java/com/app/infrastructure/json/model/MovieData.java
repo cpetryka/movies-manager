@@ -12,7 +12,8 @@ public record MovieData(String title, Genre genre, String director, LocalDate re
                         List<String> cast, int duration, List<Double> ratings, String tmdbId) {
 
     public double getAverageRating() {
-        return ratings.stream()
+        return ratings
+                .stream()
                 .mapToDouble(Double::doubleValue)
                 .average()
                 .orElse(0);

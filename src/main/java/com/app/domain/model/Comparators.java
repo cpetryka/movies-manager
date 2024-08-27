@@ -17,6 +17,6 @@ public interface Comparators {
     Comparator<Movie> byReleaseDateComparator = generalComparator(movie -> movie.releaseDate, false);
     Comparator<Movie> byReleaseDateComparatorDesc = generalComparator(movie -> movie.releaseDate, true);
 
-    Comparator<Movie> byRatingComparator = generalComparator(movie -> movie.rating, false);
-    Comparator<Movie> byRatingComparatorDesc = generalComparator(movie -> movie.rating, true);
+    Comparator<Movie> byRatingComparator = generalComparator(movie -> movie.rating.getAverageRating(), false);
+    Comparator<Movie> byRatingComparatorDesc = generalComparator(movie -> movie.rating.getAverageRating(), true);
 }

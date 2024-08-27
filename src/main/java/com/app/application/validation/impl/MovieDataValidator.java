@@ -32,7 +32,7 @@ public class MovieDataValidator implements Validator<MovieData> {
         }
 
         if(movieData.getAverageRating() < 0 || movieData.getAverageRating() > 10) {
-            errors.put("rating", "value should be in range [0.0; 10.0]: " + movieData.ratings());
+            errors.put("rating", "value should be in range [0.0; 10.0]: " + movieData.getAverageRating());
         }
 
         return errors;
