@@ -1,8 +1,7 @@
 package com.app.validation.impl;
 
 import com.app.config.AppTestConfig;
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.domain.model.Genre;
+import com.app.infrastructure.persistence.entity.MovieEntity;
 import com.app.application.validation.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,16 +23,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
 @TestPropertySource("classpath:application-test.properties")
-class MovieDataValidatorTest {
+class MovieEntityValidatorTest {
     @Autowired
-    Validator<MovieData> validator;
+    Validator<MovieEntity> validator;
 
     static Stream<Arguments> validationData() {
         return Stream.of(
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOMe",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -48,9 +47,9 @@ class MovieDataValidatorTest {
                         Map.of("title", "string does not match regex: SPIDER MAN NO WAY HOMe")
                 ),
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOME",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTs",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -65,9 +64,9 @@ class MovieDataValidatorTest {
                         Map.of("director", "string does not match regex: JON WATTs")
                 ),
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOME",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -82,9 +81,9 @@ class MovieDataValidatorTest {
                         Map.of("cast", "not all items match regex: [TOM HOLLANd, ZENDAYA, BENEDICT CUMBERBATCH]")
                 ),
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOME",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -99,9 +98,9 @@ class MovieDataValidatorTest {
                         Map.of("duration", "value must be positive: 0")
                 ),
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOME",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -116,9 +115,9 @@ class MovieDataValidatorTest {
                         Map.of("rating", "value should be in range [0.0; 10.0]: 10.5")
                 ),
                 Arguments.of(
-                        new MovieData(
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOMe",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(
@@ -142,7 +141,7 @@ class MovieDataValidatorTest {
     @ParameterizedTest
     @MethodSource("validationData")
     @DisplayName("when validation result is not correct")
-    void test1(MovieData movieData, Map<String, String> expectedErrors) {
+    void test1(MovieEntity movieData, Map<String, String> expectedErrors) {
         assertThat(validator.validate(movieData))
                 .isEqualTo(expectedErrors);
     }

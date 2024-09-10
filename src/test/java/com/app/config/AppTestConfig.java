@@ -1,14 +1,14 @@
 package com.app.config;
 
+import com.app.infrastructure.persistence.entity.MovieEntity;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
 import com.app.infrastructure.persistence.json.converter.JsonConverter;
 import com.app.infrastructure.persistence.json.converter.impl.GsonConverter;
 import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
 import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
-import com.app.infrastructure.persistence.json.deserializer.impl.MoviesDataJsonDeserializer;
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.infrastructure.persistence.json.model.MoviesData;
+import com.app.infrastructure.persistence.json.deserializer.impl.MoviesEntityJsonDeserializer;
 import com.app.application.validation.Validator;
-import com.app.application.validation.impl.MovieDataValidator;
+import com.app.infrastructure.persistence.validation.impl.MovieEntityValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -30,17 +30,17 @@ public class AppTestConfig {
     }
 
     @Bean
-    public JsonConverter<MoviesData> jsonConverter(Gson gson) {
+    public JsonConverter<MoviesEntity> jsonConverter(Gson gson) {
         return new GsonConverter<>(gson);
     }
 
     @Bean
-    public JsonDeserializer<MoviesData> jsonDeserializer(JsonConverter<MoviesData> jsonConverter) {
-        return new MoviesDataJsonDeserializer(jsonConverter);
+    public JsonDeserializer<MoviesEntity> jsonDeserializer(JsonConverter<MoviesEntity> jsonConverter) {
+        return new MoviesEntityJsonDeserializer(jsonConverter);
     }
 
     @Bean
-    public Validator<MovieData> validator() {
-        return new MovieDataValidator("[A-Z\\d\\s]+");
+    public Validator<MovieEntity> validator() {
+        return new MovieEntityValidator("[A-Z\\d\\s]+");
     }
 }

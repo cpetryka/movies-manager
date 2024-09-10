@@ -3,10 +3,9 @@ package com.app.converter.movie.impl;
 import com.app.config.AppTestConfig;
 import com.app.infrastructure.persistence.converter.movie.FileToMoviesConverter;
 import com.app.infrastructure.persistence.converter.movie.impl.JsonFileToMoviesConverter;
+import com.app.infrastructure.persistence.entity.MovieEntity;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
 import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.infrastructure.persistence.json.model.MoviesData;
-import com.app.domain.model.Genre;
 import com.app.application.validation.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,22 +31,22 @@ import static org.mockito.Mockito.when;
 @TestPropertySource("classpath:application-test.properties")
 class JsonFileToMoviesConverterTest {
     @Autowired
-    private Validator<MovieData> movieDataValidator;
+    private Validator<MovieEntity> movieDataValidator;
 
     @Mock
-    private JsonDeserializer<MoviesData> moviesDataJsonDeserializer;
+    private JsonDeserializer<MoviesEntity> moviesEntityJsonDeserializer;
 
     private FileToMoviesConverter fileToCarsConverter;
 
     @BeforeEach
     void setUp() {
-        fileToCarsConverter = new JsonFileToMoviesConverter(moviesDataJsonDeserializer, movieDataValidator);
+        fileToCarsConverter = new JsonFileToMoviesConverter(moviesEntityJsonDeserializer, movieDataValidator);
     }
 
     @Test
     @DisplayName("when all data is correct")
     void test1() {
-        when(moviesDataJsonDeserializer.fromJson(anyString()))
+        when(moviesEntityJsonDeserializer.fromJson(anyString()))
                 .thenReturn(MOVIES_DATA);
 
         assertThat(fileToCarsConverter.convert(MOVIES_FILENAME))
@@ -57,12 +56,12 @@ class JsonFileToMoviesConverterTest {
     @Test
     @DisplayName("when not all data is correct")
     void test2() {
-        when(moviesDataJsonDeserializer.fromJson(anyString()))
-                .thenReturn(new MoviesData(List.of(
-                        MOVIE_1_DATA,
-                        new MovieData(
+        when(moviesEntityJsonDeserializer.fromJson(anyString()))
+                .thenReturn(new MoviesEntity(List.of(
+                        MOVIE_1_ENTITY,
+                        new MovieEntity(
                                 "SPIDER MAN NO WAY HOMe",
-                                Genre.ACTION,
+                                "ACTION",
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(

@@ -1,8 +1,8 @@
 package com.app.json.deserializer.impl;
 
 import com.app.config.AppTestConfig;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
 import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.persistence.json.model.MoviesData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = AppTestConfig.class)
-public class MoviesDataJsonDeserializerTest {
+public class MoviesEntityJsonDeserializerTest {
     @Autowired
-    private JsonDeserializer<MoviesData> jsonDeserializer;
+    private JsonDeserializer<MoviesEntity> jsonDeserializer;
 
     @Test
     @DisplayName("when data is loaded correctly")

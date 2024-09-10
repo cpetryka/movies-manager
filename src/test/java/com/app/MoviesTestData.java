@@ -1,8 +1,7 @@
 package com.app;
 
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.infrastructure.persistence.json.model.MoviesData;
-import com.app.domain.model.Genre;
+import com.app.infrastructure.persistence.entity.MovieEntity;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
 import com.app.domain.model.Movie;
 
 import java.time.LocalDate;
@@ -11,9 +10,9 @@ import java.util.List;
 public interface MoviesTestData {
     String MOVIES_FILENAME = "movies-test.json";
 
-    MovieData MOVIE_1_DATA = new MovieData(
+    MovieEntity MOVIE_1_ENTITY = new MovieEntity(
             "SPIDER MAN NO WAY HOME",
-            Genre.ACTION,
+            "ACTION",
             "JON WATTS",
             LocalDate.of(2021, 12, 17),
             List.of(
@@ -26,11 +25,11 @@ public interface MoviesTestData {
             "634649"
     );
 
-    Movie MOVIE_1 = MOVIE_1_DATA.toMovie();
+    Movie MOVIE_1 = MOVIE_1_ENTITY.toMovie();
 
-    MovieData MOVIE_2_DATA = new MovieData(
+    MovieEntity MOVIE_2_ENTITY = new MovieEntity(
             "AFTER",
-            Genre.ROMANCE,
+            "ROMANCE",
             "JENNY GAGE",
             LocalDate.of(2019, 4, 12),
             List.of(
@@ -42,11 +41,11 @@ public interface MoviesTestData {
             "537915"
     );
 
-    Movie MOVIE_2 = MOVIE_2_DATA.toMovie();
+    Movie MOVIE_2 = MOVIE_2_ENTITY.toMovie();
 
-    MovieData MOVIE_3_DATA = new MovieData(
+    MovieEntity MOVIE_3_ENTITY = new MovieEntity(
             "TRANSFORMERS RISE OF THE BEASTS",
-            Genre.ACTION,
+            "ACTION",
             "STEVEN CAPLE JR",
             LocalDate.of(2023, 6, 6),
             List.of(
@@ -59,11 +58,11 @@ public interface MoviesTestData {
             "667538"
     );
 
-    Movie MOVIE_3 = MOVIE_3_DATA.toMovie();
+    Movie MOVIE_3 = MOVIE_3_ENTITY.toMovie();
 
-    MovieData MOVIE_4_DATA = new MovieData(
+    MovieEntity MOVIE_4_ENTITY = new MovieEntity(
             "UNCHARTED",
-            Genre.ACTION,
+            "ACTION",
             "RUBEN FLEISCHER",
             LocalDate.of(2022, 2, 10),
             List.of(
@@ -76,11 +75,11 @@ public interface MoviesTestData {
             "335787"
     );
 
-    Movie MOVIE_4 = MOVIE_4_DATA.toMovie();
+    Movie MOVIE_4 = MOVIE_4_ENTITY.toMovie();
 
-    MovieData MOVIE_5_DATA = new MovieData(
+    MovieEntity MOVIE_5_ENTITY = new MovieEntity(
             "THE LUCKY ONE",
-            Genre.ROMANCE,
+            "ROMANCE",
             "SCOTT HICKS",
             LocalDate.of(2012, 4, 20),
             List.of(
@@ -93,9 +92,9 @@ public interface MoviesTestData {
             "77877"
     );
 
-    Movie MOVIE_5 = MOVIE_5_DATA.toMovie();
+    Movie MOVIE_5 = MOVIE_5_ENTITY.toMovie();
 
-    MoviesData MOVIES_DATA = new MoviesData(List.of(MOVIE_1_DATA, MOVIE_2_DATA, MOVIE_3_DATA, MOVIE_4_DATA, MOVIE_5_DATA));
+    MoviesEntity MOVIES_DATA = new MoviesEntity(List.of(MOVIE_1_ENTITY, MOVIE_2_ENTITY, MOVIE_3_ENTITY, MOVIE_4_ENTITY, MOVIE_5_ENTITY));
 
     List<Movie> MOVIES_LIST = List.of(MOVIE_1, MOVIE_2, MOVIE_3, MOVIE_4, MOVIE_5);
 }

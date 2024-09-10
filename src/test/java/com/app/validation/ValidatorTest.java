@@ -2,8 +2,7 @@ package com.app.validation;
 
 import com.app.application.validation.Validator;
 import com.app.config.AppTestConfig;
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.domain.model.Genre;
+import com.app.infrastructure.persistence.entity.MovieEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.app.MoviesTestData.MOVIE_1_DATA;
+import static com.app.MoviesTestData.MOVIE_1_ENTITY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
@@ -23,20 +22,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource("classpath:application-test.properties")
 class ValidatorTest {
     @Autowired
-    Validator<MovieData> validator;
+    Validator<MovieEntity> validator;
 
     @Test
     @DisplayName("when validation passes")
     void test1() {
-        assertThat(Validator.validate(MOVIE_1_DATA, validator)).isTrue();
+        assertThat(Validator.validate(MOVIE_1_ENTITY, validator)).isTrue();
     }
 
     @Test
     @DisplayName("when validation fails")
     void test2() {
-        var incorrectMovieData = new MovieData(
+        var incorrectMovieData = new MovieEntity(
                 "SPIDER MAN NO WAY HOMe",
-                Genre.ACTION,
+                "ACTION",
                 "JON WATTS",
                 LocalDate.of(2021, 12, 17),
                 List.of(
