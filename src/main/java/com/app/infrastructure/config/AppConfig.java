@@ -1,9 +1,9 @@
 package com.app.infrastructure.config;
 
 import com.app.application.validation.Validator;
-import com.app.application.validation.impl.MovieDataValidator;
+import com.app.infrastructure.persistence.entity.MovieEntity;
 import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
-import com.app.infrastructure.persistence.json.model.MovieData;
+import com.app.infrastructure.persistence.validation.impl.MovieEntityValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
@@ -57,7 +57,7 @@ public class AppConfig {
     }
 
     @Bean
-    public Validator<MovieData> validator() {
-        return new MovieDataValidator(environment.getRequiredProperty("validation.regex"));
+    public Validator<MovieEntity> validator() {
+        return new MovieEntityValidator(environment.getRequiredProperty("validation.regex"));
     }
 }

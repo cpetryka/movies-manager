@@ -1,9 +1,9 @@
 package com.app.infrastructure.persistence.converter.movie.impl;
 
 import com.app.infrastructure.persistence.converter.movie.FileToMoviesConverter;
+import com.app.infrastructure.persistence.entity.MovieEntity;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
 import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.persistence.json.model.MovieData;
-import com.app.infrastructure.persistence.json.model.MoviesData;
 import com.app.domain.model.Movie;
 import com.app.application.validation.Validator;
 import lombok.RequiredArgsConstructor;
@@ -14,17 +14,17 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JsonFileToMoviesConverter implements FileToMoviesConverter {
-    private final JsonDeserializer<MoviesData> moviesDataJsonDeserializer;
-    private final Validator<MovieData> movieDataValidator;
+    private final JsonDeserializer<MoviesEntity> moviesEntityJsonDeserializer;
+    private final Validator<MovieEntity> movieEntityValidator;
 
     @Override
     public List<Movie> convert(String filename) {
-        return moviesDataJsonDeserializer
+        return moviesEntityJsonDeserializer
                 .fromJson(filename)
                 .movies()
                 .stream()
-                .filter(movieData -> Validator.validate(movieData, movieDataValidator))
-                .map(MovieData::toMovie)
+                .filter(movieData -> Validator.validate(movieData, movieEntityValidator))
+                .map(MovieEntity::toMovie)
                 .toList();
     }
 }
