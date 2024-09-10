@@ -1,6 +1,6 @@
-package com.app.infrastructure.converter.movie;
+package com.app.infrastructure.persistence.converter.movie;
 
-import com.app.infrastructure.converter.Converter;
+import com.app.infrastructure.persistence.converter.Converter;
 import com.app.domain.model.Movie;
 
 import java.util.List;

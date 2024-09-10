@@ -1,6 +1,6 @@
-package com.app.infrastructure.json.converter.impl;
+package com.app.infrastructure.persistence.json.converter.impl;
 
-import com.app.infrastructure.json.converter.JsonConverter;
+import com.app.infrastructure.persistence.json.converter.JsonConverter;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

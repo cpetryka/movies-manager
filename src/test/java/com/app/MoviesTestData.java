@@ -1,7 +1,7 @@
 package com.app;
 
-import com.app.infrastructure.json.model.MovieData;
-import com.app.infrastructure.json.model.MoviesData;
+import com.app.infrastructure.persistence.json.model.MovieData;
+import com.app.infrastructure.persistence.json.model.MoviesData;
 import com.app.domain.model.Genre;
 import com.app.domain.model.Movie;
 

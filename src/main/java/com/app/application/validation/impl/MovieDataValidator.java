@@ -1,7 +1,7 @@
 package com.app.application.validation.impl;
 
 import com.app.application.validation.Validator;
-import com.app.infrastructure.json.model.MovieData;
+import com.app.infrastructure.persistence.json.model.MovieData;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;

@@ -1,8 +1,8 @@
 package com.app.json.deserializer.impl;
 
 import com.app.config.AppTestConfig;
-import com.app.infrastructure.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.json.model.MoviesData;
+import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.persistence.json.model.MoviesData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

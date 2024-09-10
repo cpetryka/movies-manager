@@ -1,12 +1,12 @@
 package com.app.config;
 
-import com.app.infrastructure.json.converter.JsonConverter;
-import com.app.infrastructure.json.converter.impl.GsonConverter;
-import com.app.infrastructure.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.json.deserializer.custom.LocalDateDeserializer;
-import com.app.infrastructure.json.deserializer.impl.MoviesDataJsonDeserializer;
-import com.app.infrastructure.json.model.MovieData;
-import com.app.infrastructure.json.model.MoviesData;
+import com.app.infrastructure.persistence.json.converter.JsonConverter;
+import com.app.infrastructure.persistence.json.converter.impl.GsonConverter;
+import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
+import com.app.infrastructure.persistence.json.deserializer.impl.MoviesDataJsonDeserializer;
+import com.app.infrastructure.persistence.json.model.MovieData;
+import com.app.infrastructure.persistence.json.model.MoviesData;
 import com.app.application.validation.Validator;
 import com.app.application.validation.impl.MovieDataValidator;
 import com.google.gson.Gson;

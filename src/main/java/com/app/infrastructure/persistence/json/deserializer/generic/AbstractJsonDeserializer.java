@@ -1,7 +1,7 @@
-package com.app.infrastructure.json.deserializer.generic;
+package com.app.infrastructure.persistence.json.deserializer.generic;
 
-import com.app.infrastructure.json.converter.JsonConverter;
-import com.app.infrastructure.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.persistence.json.converter.JsonConverter;
+import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 

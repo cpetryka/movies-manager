@@ -1,4 +1,4 @@
-package com.app.infrastructure.json.model;
+package com.app.infrastructure.persistence.json.model;
 
 import java.util.List;
 

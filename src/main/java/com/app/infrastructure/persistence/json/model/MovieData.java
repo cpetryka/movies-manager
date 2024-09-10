@@ -1,4 +1,4 @@
-package com.app.infrastructure.json.model;
+package com.app.infrastructure.persistence.json.model;
 
 import com.app.domain.model.Genre;
 import com.app.domain.model.Movie;

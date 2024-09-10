@@ -1,7 +1,7 @@
 package com.app.domain.repository.impl;
 
 import com.app.domain.repository.MovieRepository;
-import com.app.infrastructure.converter.movie.FileToMoviesConverter;
+import com.app.infrastructure.persistence.converter.movie.FileToMoviesConverter;
 import com.app.domain.model.Movie;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;

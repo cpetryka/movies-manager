@@ -1,9 +1,9 @@
-package com.app.infrastructure.converter.movie.impl;
+package com.app.infrastructure.persistence.converter.movie.impl;
 
-import com.app.infrastructure.converter.movie.FileToMoviesConverter;
-import com.app.infrastructure.json.deserializer.JsonDeserializer;
-import com.app.infrastructure.json.model.MovieData;
-import com.app.infrastructure.json.model.MoviesData;
+import com.app.infrastructure.persistence.converter.movie.FileToMoviesConverter;
+import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.persistence.json.model.MovieData;
+import com.app.infrastructure.persistence.json.model.MoviesData;
 import com.app.domain.model.Movie;
 import com.app.application.validation.Validator;
 import lombok.RequiredArgsConstructor;

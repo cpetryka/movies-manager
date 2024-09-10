@@ -2,7 +2,7 @@ package com.app.validation;
 
 import com.app.application.validation.Validator;
 import com.app.config.AppTestConfig;
-import com.app.infrastructure.json.model.MovieData;
+import com.app.infrastructure.persistence.json.model.MovieData;
 import com.app.domain.model.Genre;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

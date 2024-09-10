@@ -2,8 +2,8 @@ package com.app.infrastructure.config;
 
 import com.app.application.validation.Validator;
 import com.app.application.validation.impl.MovieDataValidator;
-import com.app.infrastructure.json.deserializer.custom.LocalDateDeserializer;
-import com.app.infrastructure.json.model.MovieData;
+import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
+import com.app.infrastructure.persistence.json.model.MovieData;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.RequiredArgsConstructor;
