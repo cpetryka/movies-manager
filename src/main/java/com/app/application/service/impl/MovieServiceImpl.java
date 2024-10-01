@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import static com.app.domain.model.Comparators.byTitleComparator;
 import static com.app.domain.model.MovieMappers.*;
-import static com.app.domain.model.Predicates.hasReleaseDateBetweenPredicate;
+import static com.app.domain.model.MoviePredicates.hasReleaseDateBetweenPredicate;
 
 @Service
 @RequiredArgsConstructor
@@ -378,7 +378,7 @@ public class MovieServiceImpl implements MovieService {
                 htmlService.manyToHtml("Movies with rating closest to 6.0",
                         findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(Rating.of(RatingItem.SIX_STARS))))
                 ), htmlService.manyToHtml("Movies matching the provided criteria",
-                        findAllBy(Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                        findAllBy(MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
                                 Genre.ACTION,
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
@@ -387,7 +387,7 @@ public class MovieServiceImpl implements MovieService {
                                 150,
                                 5.0
                         )))), htmlService.manyToHtml("Movies containing the following keywords 'SPIDER MAN' and 'ZENDAYA'",
-                        findAllBy(Predicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))), htmlService.manyToHtml("Additional info about the movie 'UNCHARTED'",
+                        findAllBy(MoviePredicates.matchesKeywordsPredicate(List.of("SPIDER MAN", "ZENDAYA")))), htmlService.manyToHtml("Additional info about the movie 'UNCHARTED'",
                         getAdditionalInfoAboutMovieByTitle("UNCHARTED")));
     }
 

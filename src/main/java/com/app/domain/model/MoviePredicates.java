@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 
-public interface Predicates {
+public interface MoviePredicates {
     static Predicate<Movie> hasReleaseDateBetweenPredicate(LocalDate minDate, LocalDate maxDate) {
         return movie -> movie.hasReleaseDateBetween(minDate, maxDate);
     }

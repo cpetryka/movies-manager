@@ -3,7 +3,7 @@ package com.app.service.impl;
 import com.app.application.service.impl.MovieServiceImpl;
 import com.app.domain.model.Genre;
 import com.app.domain.model.Movie;
-import com.app.domain.model.Predicates;
+import com.app.domain.model.MoviePredicates;
 import com.app.domain.repository.MovieRepository;
 import com.app.domain.utils.MovieCriteria;
 import org.assertj.core.api.Assertions;
@@ -47,21 +47,21 @@ class MovieServiceImplFindAllByTest {
     private static Stream<Arguments> predicatesWithExpectedResultLists() {
         return Stream.of(
                 Arguments.of(
-                        Predicates.hasReleaseDateBetweenPredicate(
+                        MoviePredicates.hasReleaseDateBetweenPredicate(
                                 LocalDate.of(2014, 1, 1),
                                 LocalDate.of(2018, 1, 1)
                         ),
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.hasReleaseDateBetweenPredicate(
+                        MoviePredicates.hasReleaseDateBetweenPredicate(
                                 LocalDate.of(2022, 1, 1),
                                 LocalDate.of(2024, 1, 1)
                         ),
                         List.of(MOVIE_3, MOVIE_4)
                 ),
                 Arguments.of(
-                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                        MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
                                 Genre.ACTION,
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
@@ -73,7 +73,7 @@ class MovieServiceImplFindAllByTest {
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
+                        MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
                                 Genre.ACTION,
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
@@ -85,20 +85,20 @@ class MovieServiceImplFindAllByTest {
                         List.of(MOVIE_1, MOVIE_4)
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "JOHN"
                         )),
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "SPIDER MAN",
                                 "ZENDAYA"
                         )),
                         List.of(MOVIE_1)
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "HOLLAND"
                         )),
                         List.of(MOVIE_1, MOVIE_4)
