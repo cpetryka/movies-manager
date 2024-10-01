@@ -19,7 +19,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.app.domain.model.Comparators.byTitleComparator;
+import static com.app.domain.model.MovieComparators.byTitleComparator;
 import static com.app.domain.model.MovieMappers.*;
 import static com.app.domain.model.MoviePredicates.hasReleaseDateBetweenPredicate;
 

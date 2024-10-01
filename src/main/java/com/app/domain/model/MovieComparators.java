@@ -3,7 +3,7 @@ package com.app.domain.model;
 import java.util.Comparator;
 import java.util.function.Function;
 
-public interface Comparators {
+public interface MovieComparators {
     private static <T, U extends Comparable<U>> Comparator<T> generalComparator(
             Function<T, U> extractor, boolean descending) {
         return descending
