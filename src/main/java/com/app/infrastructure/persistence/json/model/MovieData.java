@@ -1,9 +1,9 @@
 package com.app.infrastructure.persistence.json.model;
 
-import com.app.domain.model.Genre;
-import com.app.domain.model.Movie;
-import com.app.domain.model.Rating;
-import com.app.domain.model.RatingItem;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.vo.Rating;
+import com.app.domain.movies_management.model.vo.RatingItem;
 
 import java.time.LocalDate;
 import java.util.List;

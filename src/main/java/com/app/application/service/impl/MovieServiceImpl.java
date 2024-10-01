@@ -1,11 +1,16 @@
 package com.app.application.service.impl;
 
+import com.app.application.dto.MovieAdditionalInfo;
 import com.app.application.service.*;
-import com.app.domain.model.*;
-import com.app.domain.repository.MovieRepository;
-import com.app.domain.utils.MinMax;
-import com.app.domain.utils.MovieCriteria;
-import com.app.domain.utils.Statistics;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.MoviePredicates;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.vo.Rating;
+import com.app.domain.movies_management.model.vo.RatingItem;
+import com.app.domain.movies_management.model.repository.MovieRepository;
+import com.app.application.utils.MinMax;
+import com.app.domain.movies_management.model.MovieCriteria;
+import com.app.application.utils.Statistics;
 import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,9 +24,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.app.domain.model.MovieComparators.byTitleComparator;
-import static com.app.domain.model.MovieMappers.*;
-import static com.app.domain.model.MoviePredicates.hasReleaseDateBetweenPredicate;
+import static com.app.domain.movies_management.model.MovieComparators.byTitleComparator;
+import static com.app.domain.movies_management.model.MovieMappers.*;
+import static com.app.domain.movies_management.model.MoviePredicates.hasReleaseDateBetweenPredicate;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +44,7 @@ public class MovieServiceImpl implements MovieService {
      * Sorts a list of {@code Movie} objects based on the provided criterion.
      *
      * @param movieComparator The criterion for sorting {@code Movie} objects. It's an object implementing the
-     *                        {@link Comparator<Movie>} interface, which defines how two {@code Movie} objects
+     *                        {@link Comparator< Movie >} interface, which defines how two {@code Movie} objects
      *                        are compared to each other.
      * @return A list of {@code Movie} objects sorted based on the given criterion.
      * @throws IllegalArgumentException if the provided movie comparator is null.

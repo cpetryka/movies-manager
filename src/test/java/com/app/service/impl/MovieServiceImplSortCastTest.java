@@ -1,8 +1,8 @@
 package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
-import com.app.domain.model.Movie;
-import com.app.domain.repository.MovieRepository;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

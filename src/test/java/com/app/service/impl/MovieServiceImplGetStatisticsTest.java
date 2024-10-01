@@ -1,9 +1,9 @@
 package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
-import com.app.domain.model.Genre;
-import com.app.domain.repository.MovieRepository;
-import com.app.domain.utils.Statistics;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.repository.MovieRepository;
+import com.app.application.utils.Statistics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static com.app.MoviesTestData.MOVIES_LIST;
-import static com.app.domain.model.MovieMappers.*;
+import static com.app.domain.movies_management.model.MovieMappers.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.when;

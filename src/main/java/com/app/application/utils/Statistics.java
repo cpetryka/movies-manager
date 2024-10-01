@@ -1,4 +1,4 @@
-package com.app.domain.utils;
+package com.app.application.utils;
 
 import java.math.BigDecimal;
 

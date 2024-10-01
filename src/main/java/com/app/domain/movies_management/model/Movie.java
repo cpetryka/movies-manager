@@ -1,10 +1,10 @@
-package com.app.domain.model;
+package com.app.domain.movies_management.model;
 
-import com.app.domain.utils.MovieCriteria;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.vo.Rating;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Comparator;

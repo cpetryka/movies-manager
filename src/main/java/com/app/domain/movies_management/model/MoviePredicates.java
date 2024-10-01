@@ -1,6 +1,4 @@
-package com.app.domain.model;
-
-import com.app.domain.utils.MovieCriteria;
+package com.app.domain.movies_management.model;
 
 import java.time.LocalDate;
 import java.util.List;

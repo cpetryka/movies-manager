@@ -1,4 +1,6 @@
-package com.app.domain.model;
+package com.app.domain.movies_management.model;
+
+import com.app.domain.movies_management.model.type.Genre;
 
 import java.time.LocalDate;
 import java.util.List;

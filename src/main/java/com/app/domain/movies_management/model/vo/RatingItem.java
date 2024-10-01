@@ -1,4 +1,4 @@
-package com.app.domain.model;
+package com.app.domain.movies_management.model.vo;
 
 import java.util.Arrays;
 

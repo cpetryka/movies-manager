@@ -1,4 +1,4 @@
-package com.app.domain.model;
+package com.app.application.dto;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;

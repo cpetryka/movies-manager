@@ -1,4 +1,4 @@
-package com.app.domain.model;
+package com.app.domain.movies_management.model.type;
 
 public enum Genre {
     ACTION,

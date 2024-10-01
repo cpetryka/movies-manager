@@ -1,3 +1,3 @@
-package com.app.domain.utils;
+package com.app.application.utils;
 
 public record MinMax<T>(T min, T max) {}

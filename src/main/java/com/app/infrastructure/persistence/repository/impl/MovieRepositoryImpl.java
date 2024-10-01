@@ -1,8 +1,8 @@
-package com.app.domain.repository.impl;
+package com.app.infrastructure.persistence.repository.impl;
 
-import com.app.domain.repository.MovieRepository;
+import com.app.domain.movies_management.model.repository.MovieRepository;
 import com.app.infrastructure.persistence.converter.movie.FileToMoviesConverter;
-import com.app.domain.model.Movie;
+import com.app.domain.movies_management.model.Movie;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

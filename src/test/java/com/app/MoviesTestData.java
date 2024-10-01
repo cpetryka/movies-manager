@@ -2,7 +2,7 @@ package com.app;
 
 import com.app.infrastructure.persistence.entity.MovieEntity;
 import com.app.infrastructure.persistence.entity.MoviesEntity;
-import com.app.domain.model.Movie;
+import com.app.domain.movies_management.model.Movie;
 
 import java.time.LocalDate;
 import java.util.List;

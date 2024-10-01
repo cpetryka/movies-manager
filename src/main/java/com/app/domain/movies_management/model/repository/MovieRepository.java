@@ -1,6 +1,6 @@
-package com.app.domain.repository;
+package com.app.domain.movies_management.model.repository;
 
-import com.app.domain.model.Movie;
+import com.app.domain.movies_management.model.Movie;
 
 import java.util.List;
 

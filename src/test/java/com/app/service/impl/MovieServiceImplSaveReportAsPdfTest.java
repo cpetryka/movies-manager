@@ -1,7 +1,7 @@
 package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
-import com.app.domain.repository.MovieRepository;
+import com.app.domain.movies_management.model.repository.MovieRepository;
 import com.app.application.service.HtmlService;
 import com.app.application.service.PdfService;
 import org.junit.jupiter.api.BeforeEach;

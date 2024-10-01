@@ -1,9 +1,9 @@
 package com.app.application.service;
 
-import com.app.domain.model.Movie;
-import com.app.domain.model.MovieAdditionalInfo;
-import com.app.domain.utils.MinMax;
-import com.app.domain.utils.Statistics;
+import com.app.domain.movies_management.model.Movie;
+import com.app.application.dto.MovieAdditionalInfo;
+import com.app.application.utils.MinMax;
+import com.app.application.utils.Statistics;
 
 import java.util.Comparator;
 import java.util.List;
