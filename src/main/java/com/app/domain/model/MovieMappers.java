@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Function;
 
-public interface Mappers {
+public interface MovieMappers {
     Function<Movie, String> toTitleMapper = movie -> movie.title;
     Function<Movie, Genre> toGenreMapper = movie -> movie.genre;
     Function<Movie, String> toDirectorMapper = movie -> movie.director;

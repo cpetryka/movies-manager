@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.app.MoviesTestData.*;
-import static com.app.domain.model.Mappers.toGenreMapper;
+import static com.app.domain.model.MovieMappers.toGenreMapper;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 

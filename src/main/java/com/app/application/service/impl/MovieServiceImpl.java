@@ -20,7 +20,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.app.domain.model.Comparators.byTitleComparator;
-import static com.app.domain.model.Mappers.*;
+import static com.app.domain.model.MovieMappers.*;
 import static com.app.domain.model.Predicates.hasReleaseDateBetweenPredicate;
 
 @Service
