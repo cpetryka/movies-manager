@@ -1,4 +1,4 @@
-package com.app.application.service.impl;
+package com.app.infrastructure.service.impl;
 
 import com.app.application.service.HtmlService;
 import org.springframework.stereotype.Service;

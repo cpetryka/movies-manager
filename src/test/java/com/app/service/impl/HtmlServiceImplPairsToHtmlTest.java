@@ -1,7 +1,7 @@
 package com.app.service.impl;
 
 import com.app.application.service.HtmlService;
-import com.app.application.service.impl.HtmlServiceImpl;
+import com.app.infrastructure.service.impl.HtmlServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

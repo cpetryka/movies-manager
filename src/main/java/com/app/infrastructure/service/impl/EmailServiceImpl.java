@@ -1,4 +1,4 @@
-package com.app.infrastructure.email.impl;
+package com.app.infrastructure.service.impl;
 
 import com.app.application.service.EmailService;
 import lombok.RequiredArgsConstructor;

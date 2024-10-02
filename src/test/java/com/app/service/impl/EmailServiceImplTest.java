@@ -1,6 +1,6 @@
 package com.app.service.impl;
 
-import com.app.infrastructure.email.impl.EmailServiceImpl;
+import com.app.infrastructure.service.impl.EmailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
