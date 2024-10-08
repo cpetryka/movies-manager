@@ -76,7 +76,7 @@ class MovieServiceImplGetAdditionalInfoAboutMovieByTitleTest {
                 "/rJHC1RUORuUhtfNb4Npclx0xnOf.jpg"
                 );
 
-        when(httpClientService.get(anyString(), any()))
+        when(httpClientService.get(anyString(), eq(MovieAdditionalInfo.class)))
                 .thenReturn(movieAdditionalInfo); // Simplified return logic for demonstration.
 
         assertThat(movieService.getAdditionalInfoAboutMovieByTitle(title))

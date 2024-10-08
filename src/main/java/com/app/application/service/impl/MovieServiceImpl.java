@@ -312,7 +312,7 @@ public class MovieServiceImpl implements MovieService {
                 .stream()
                 .map(movie -> httpClientService.get(
                         "https://api.themoviedb.org/3/movie/%s?api_key=%s".formatted(toTmdbIdMapper.apply(movie), tmdbApiKey),
-                        new TypeToken<MovieAdditionalInfo>() {}
+                        MovieAdditionalInfo.class
                 ))
                 .toList();
     }

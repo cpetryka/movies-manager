@@ -29,6 +29,17 @@ public class HttpClientServiceImpl implements HttpClientService {
                 .build();
     }
 
+    /*@SneakyThrows
+    @Override
+    public <T> T get(String url, Class<T> type) {
+        var response = httpClient.send(
+                requestGet(url),
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        return gson.fromJson(response.body(), new TypeToken<T>() {}.getType());
+    }*/
+
     @SneakyThrows
     @Override
     public<T> T get(String url, TypeToken<T> type) {
@@ -38,5 +49,10 @@ public class HttpClientServiceImpl implements HttpClientService {
         );
 
         return gson.fromJson(response.body(), type);
+    }
+
+    @Override
+    public <T> T get(String url, Class<T> type) {
+        return get(url, TypeToken.get(type));
     }
 }
