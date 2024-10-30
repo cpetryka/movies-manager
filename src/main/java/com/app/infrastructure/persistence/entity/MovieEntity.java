@@ -1,5 +1,6 @@
 package com.app.infrastructure.persistence.entity;
 
+import com.app.domain.movies_management.model.Actor;
 import com.app.domain.movies_management.model.type.Genre;
 import com.app.domain.movies_management.model.Movie;
 import com.app.domain.movies_management.model.vo.Rating;
@@ -17,7 +18,7 @@ public class MovieEntity {
     String genre;
     String director;
     LocalDate releaseDate;
-    List<String> cast;
+    List<ActorEntity> cast;
     int duration;
     List<Double> ratings;
     @ToString.Exclude
@@ -38,7 +39,10 @@ public class MovieEntity {
                 .genre(Genre.valueOf(genre))
                 .director(director)
                 .releaseDate(releaseDate)
-                .cast(cast)
+                .cast(cast
+                        .stream()
+                        .map(ActorEntity::toActor)
+                        .toList())
                 .duration(duration)
                 .rating(new Rating(ratings
                         .stream()

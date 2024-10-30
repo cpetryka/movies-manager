@@ -19,7 +19,7 @@ public class Movie {
     final Genre genre;
     final String director;
     final LocalDate releaseDate;
-    final List<String> cast;
+    final List<Actor> cast;
     final int duration;
     final Rating rating;
     final String tmdbId;
@@ -30,7 +30,7 @@ public class Movie {
      * @param castComparator comparator used for sorting cast members.
      * @return A new {@code Movie} object with sorted cast members list.
      */
-    public Movie sortCast(Comparator<String> castComparator) {
+    public Movie sortCast(Comparator<Actor> castComparator) {
         return Movie
                 .builder()
                 .title(this.title)
@@ -75,7 +75,8 @@ public class Movie {
         var matchesGenre = this.genre.equals(movieCriteria.requiredGenre());
         var matchesReleaseDate = this.releaseDate.isAfter(movieCriteria.requiredReleaseDateMin())
                 && this.releaseDate.isBefore(movieCriteria.requiredReleaseDateMax());
-        var containsCastMembers = new HashSet<>(this.cast).containsAll(movieCriteria.requiredCast());
+        var containsCastMembers = new HashSet<>(this.cast.stream().map(Actor::getFullName).toList())
+                .containsAll(movieCriteria.requiredCast());
         var matchesDuration = this.duration >= movieCriteria.requiredDurationMin()
                 && this.duration <= movieCriteria.requiredDurationMax();
         var matchesRating = this.rating.getAverageRating() >= movieCriteria.requiredRatingMin();
@@ -90,12 +91,13 @@ public class Movie {
      * @return true if the movie contains all the keywords, false otherwise.
      */
     public boolean matchesKeywords(List<String> keywords) {
-        String selectedMovieDataString = this.title + " " + this.director + " " + this.cast;
+        String selectedMovieDataString = (this.title + " " + this.director + " "
+                + this.cast.stream().map(Actor::getFullName).toList()).toLowerCase();
 
         return keywords
                 .stream()
                 // Convert the keywords to uppercase and check if the selected movie data string contains them.
-                .allMatch(keyword -> selectedMovieDataString.contains(keyword.toUpperCase()));
+                .allMatch(keyword -> selectedMovieDataString.contains(keyword.toLowerCase()));
     }
 
     /**

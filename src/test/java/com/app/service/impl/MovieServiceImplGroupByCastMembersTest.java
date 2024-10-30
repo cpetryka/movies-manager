@@ -51,11 +51,11 @@ class MovieServiceImplGroupByCastMembersTest {
         Comparator<List<Movie>> comparator = Comparator.comparingInt(List::size);
 
         Map<String, List<Movie>> expectedGroupedMovies = Map.of(
-                "TOM HOLLAND", List.of(MOVIE_1, MOVIE_4),
-                "ZENDAYA", List.of(MOVIE_1),
-                "BENEDICT CUMBERBATCH", List.of(MOVIE_1),
-                "MARK WAHLBERG", List.of(MOVIE_4),
-                "SOPHIA ALI", List.of(MOVIE_4)
+                "Tom Holland", List.of(MOVIE_1, MOVIE_4),
+                "Zendaya", List.of(MOVIE_1),
+                "Benedict Cumberbatch", List.of(MOVIE_1),
+                "Mark Wahlberg", List.of(MOVIE_4),
+                "Sophia Ali", List.of(MOVIE_4)
         );
 
         assertThat(movieService.groupByCastMembers(comparator))

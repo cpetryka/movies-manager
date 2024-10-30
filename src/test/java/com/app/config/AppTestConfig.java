@@ -41,6 +41,6 @@ public class AppTestConfig {
 
     @Bean
     public Validator<MovieEntity> validator() {
-        return new MovieEntityValidator("[A-Z\\d\\s]+");
+        return new MovieEntityValidator("[A-Za-z\\d\\s]+");
     }
 }

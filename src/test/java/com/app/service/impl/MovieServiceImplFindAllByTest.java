@@ -77,7 +77,7 @@ class MovieServiceImplFindAllByTest {
                                 Genre.ACTION,
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
-                                List.of("TOM HOLLAND"),
+                                List.of("Tom Holland"),
                                 110,
                                 150,
                                 5.0
@@ -93,13 +93,13 @@ class MovieServiceImplFindAllByTest {
                 Arguments.of(
                         MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "SPIDER MAN",
-                                "ZENDAYA"
+                                "Zendaya"
                         )),
                         List.of(MOVIE_1)
                 ),
                 Arguments.of(
                         MoviePredicates.matchesKeywordsPredicate(List.of(
-                                "HOLLAND"
+                                "Holland"
                         )),
                         List.of(MOVIE_1, MOVIE_4)
                 )

@@ -1,6 +1,8 @@
 package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.movies_management.model.Actor;
+import com.app.domain.movies_management.model.ActorComparators;
 import com.app.domain.movies_management.model.Movie;
 import com.app.domain.movies_management.model.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +49,7 @@ public class MovieServiceImplSortCastTest {
     @Test
     @DisplayName("when comparator is not null")
     void test2() {
-        Comparator<String> comparator = Comparator.naturalOrder();
+        Comparator<Actor> comparator = Comparator.comparing(Actor::getFullName);
 
         List<Movie> expectedMoviesList = List.of(
                 MOVIE_1.sortCast(comparator),
@@ -55,7 +57,7 @@ public class MovieServiceImplSortCastTest {
                 MOVIE_3.sortCast(comparator)
         );
 
-        assertThat(movieService.sortCast(comparator))
+        assertThat(movieService.sortCast(ActorComparators.byNameComparator))
                 .isEqualTo(expectedMoviesList);
     }
 }

@@ -2,14 +2,12 @@ package com.app.application.service.impl;
 
 import com.app.application.dto.MovieAdditionalInfo;
 import com.app.application.service.*;
-import com.app.domain.movies_management.model.Movie;
-import com.app.domain.movies_management.model.MoviePredicates;
+import com.app.domain.movies_management.model.*;
 import com.app.domain.movies_management.model.type.Genre;
 import com.app.domain.movies_management.model.vo.Rating;
 import com.app.domain.movies_management.model.vo.RatingItem;
 import com.app.domain.movies_management.model.repository.MovieRepository;
 import com.app.application.utils.MinMax;
-import com.app.domain.movies_management.model.MovieCriteria;
 import com.app.application.utils.Statistics;
 import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
@@ -219,7 +217,7 @@ public class MovieServiceImpl implements MovieService {
      * @return A list of {@code Movie} objects with sorted cast members lists.
      */
     @Override
-    public List<Movie> sortCast(Comparator<String> castComparator) {
+    public List<Movie> sortCast(Comparator<Actor> castComparator) {
         if(castComparator == null) {
             throw new IllegalArgumentException("Cast comparator is null");
         }
@@ -252,7 +250,7 @@ public class MovieServiceImpl implements MovieService {
                 .flatMap(movie -> toCastMapper
                         .apply(movie)
                         .stream()
-                        .map(castMember -> new AbstractMap.SimpleEntry<>(castMember, movie))
+                        .map(castMember -> new AbstractMap.SimpleEntry<>(castMember.getFullName(), movie))
                 )
                 // Group by cast member
                 .collect(Collectors.groupingBy(
@@ -377,7 +375,7 @@ public class MovieServiceImpl implements MovieService {
                         groupAndFindMinMaxByCriteria(toGenreMapper, toRatingMapper, Comparator.naturalOrder())),
                 htmlService.oneToHtml("Statistics based on average rating", getStatistics(toRatingMapper)),
                 htmlService.manyToHtml("Movies with their cast sorted in a natural order",
-                        sortCast(Comparator.naturalOrder())),
+                        sortCast(ActorComparators.byNameComparator)),
                 htmlService.pairsToHtml("Movies grouped by cast members",
                         groupByCastMembers(Comparator.comparing(List::size))),
                 htmlService.manyToHtml("Movies with rating closest to 6.0",
