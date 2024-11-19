@@ -2,7 +2,7 @@ package com.app.application.service;
 
 import com.app.domain.movies_management.model.Actor;
 import com.app.domain.movies_management.model.Movie;
-import com.app.application.dto.MovieAdditionalInfo;
+import com.app.infrastructure.api.dto.MovieAdditionalInfo;
 import com.app.application.utils.MinMax;
 import com.app.application.utils.Statistics;
 

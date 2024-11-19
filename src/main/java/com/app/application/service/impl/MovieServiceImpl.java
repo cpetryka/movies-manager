@@ -1,6 +1,6 @@
 package com.app.application.service.impl;
 
-import com.app.application.dto.MovieAdditionalInfo;
+import com.app.infrastructure.api.dto.MovieAdditionalInfo;
 import com.app.application.service.*;
 import com.app.domain.movies_management.model.*;
 import com.app.domain.movies_management.model.type.Genre;
@@ -9,7 +9,6 @@ import com.app.domain.movies_management.model.vo.RatingItem;
 import com.app.domain.movies_management.model.repository.MovieRepository;
 import com.app.application.utils.MinMax;
 import com.app.application.utils.Statistics;
-import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

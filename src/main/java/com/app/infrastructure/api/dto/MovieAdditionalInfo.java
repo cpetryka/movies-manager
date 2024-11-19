@@ -1,4 +1,4 @@
-package com.app.application.dto;
+package com.app.infrastructure.api.dto;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;

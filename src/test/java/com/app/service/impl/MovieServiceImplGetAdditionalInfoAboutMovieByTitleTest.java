@@ -1,8 +1,8 @@
 package com.app.service.impl;
 
 import com.app.application.service.impl.MovieServiceImpl;
-import com.app.application.dto.MovieAdditionalInfo;
-import com.app.application.dto.ProductionCompany;
+import com.app.infrastructure.api.dto.MovieAdditionalInfo;
+import com.app.infrastructure.api.dto.ProductionCompany;
 import com.app.domain.movies_management.model.repository.MovieRepository;
 import com.app.application.service.HttpClientService;
 import org.junit.jupiter.api.DisplayName;

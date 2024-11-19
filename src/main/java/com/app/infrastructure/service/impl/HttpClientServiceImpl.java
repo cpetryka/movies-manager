@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -17,6 +18,7 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class HttpClientServiceImpl implements HttpClientService {
     private final HttpClient httpClient;
+
     private final Gson gson;
 
     @SneakyThrows
