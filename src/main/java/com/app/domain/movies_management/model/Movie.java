@@ -2,6 +2,7 @@ package com.app.domain.movies_management.model;
 
 import com.app.domain.movies_management.model.type.Genre;
 import com.app.domain.movies_management.model.vo.Rating;
+import com.app.domain.movies_management.model.vo.RatingItem;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -121,5 +122,9 @@ public class Movie {
                 ", duration=" + duration +
                 ", rating=" + rating.getAverageRating() +
                 ')';
+    }
+
+    public void addReview(RatingItem ratingItem) {
+        this.rating.addRatingItem(ratingItem);
     }
 }

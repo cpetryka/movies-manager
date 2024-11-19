@@ -24,6 +24,15 @@ public class Rating {
                 .orElse(0);
     }
 
+    /**
+     * Adds a new rating item to the rating.
+     *
+     * @param ratingItem the new rating item to be added.
+     */
+    public void addRatingItem(RatingItem ratingItem) {
+        ratingItems.add(ratingItem);
+    }
+
     public static Rating of(RatingItem... ratingItems) {
         return new Rating(List.of(ratingItems));
     }
