@@ -9,6 +9,13 @@ public interface MoviePredicates {
         return movie -> movie.hasReleaseDateBetween(minDate, maxDate);
     }
 
+    static Predicate<Movie> hasRatingBetweenPredicate(double minRating, double maxRating) {
+        return movie -> {
+            var averageRating = movie.rating.getAverageRating();
+            return averageRating >= minRating && averageRating <= maxRating;
+        };
+    }
+
     static Predicate<Movie> matchesCriteriaPredicate(MovieCriteria movieCriteria) {
         return movie -> movie.matchesCriteria(movieCriteria);
     }
