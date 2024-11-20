@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import static com.app.MoviesTestData.*;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-class MovieRepositoryImplTest {
+class MovieRepositoryImplAddMovieTest {
     @Mock
     private FileToMoviesConverter fileToMoviesConverter;
 
@@ -32,7 +32,7 @@ class MovieRepositoryImplTest {
         MockitoAnnotations.openMocks(this);
 
         when(fileToMoviesConverter.convert(MOVIES_FILENAME))
-                .thenReturn(List.of(MOVIE_1, MOVIE_2));
+                .thenReturn(new ArrayList<>());
 
         movieRepository = new MovieRepositoryImpl(fileToMoviesConverter);
 
@@ -57,18 +57,22 @@ class MovieRepositoryImplTest {
     }
 
     @Test
-    @DisplayName("when getMovies method works correctly")
+    @DisplayName("when addMovie method works correctly")
     void test1() {
+        // Ad the beginning, there should be no movies in the collection
         assertThat(movieRepository.getMovies())
-                .hasSize(2)
-                .isEqualTo(List.of(MOVIE_1, MOVIE_2));
-    }
+                .isEmpty();
 
-    @Test
-    @DisplayName("when getMoviesByTitle method works correctly")
-    void test2() {
-        assertThat(movieRepository.getMoviesByTitle("SPIDER MAN NO WAY HOME"))
-                .hasSize(1)
-                .isEqualTo(List.of(MOVIE_1));
+        // The first added movie should be at index 0
+        assertThat(movieRepository.addMovie(MOVIE_1))
+                .isZero();
+
+        // The second added movie should be at index 1
+        assertThat(movieRepository.addMovie(MOVIE_2))
+                .isOne();
+
+        // There should be 2 movies in total
+        assertThat(movieRepository.getMovies())
+                .hasSize(2);
     }
 }
