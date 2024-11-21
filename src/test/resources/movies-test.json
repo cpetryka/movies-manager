@@ -2,7 +2,9 @@
   "movies": [
     {
       "title": "SPIDER MAN NO WAY HOME",
-      "genre": "ACTION",
+      "genres": [
+        "ACTION"
+      ],
       "director": "JON WATTS",
       "releaseDate": "2021-12-17",
       "cast": [
@@ -37,7 +39,9 @@
     },
     {
       "title": "AFTER",
-      "genre": "ROMANCE",
+      "genres": [
+        "ROMANCE"
+      ],
       "director": "JENNY GAGE",
       "releaseDate": "2019-04-12",
       "cast": [

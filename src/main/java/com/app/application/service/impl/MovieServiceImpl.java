@@ -369,9 +369,9 @@ public class MovieServiceImpl implements MovieService {
                                 LocalDate.of(2022, 1, 1),
                                 LocalDate.of(2024, 1, 1)
                         ))),
-                htmlService.pairsToHtml("Movies counted by their genre", countBy(toGenreMapper)),
+                htmlService.pairsToHtml("Movies counted by their genre", countBy(toGenresMapper)),
                 htmlService.pairsToHtml("The best and the worst movie in a certain genre",
-                        groupAndFindMinMaxByCriteria(toGenreMapper, toRatingMapper, Comparator.naturalOrder())),
+                        groupAndFindMinMaxByCriteria(toGenresMapper, toRatingMapper, Comparator.naturalOrder())),
                 htmlService.oneToHtml("Statistics based on average rating", getStatistics(toRatingMapper)),
                 htmlService.manyToHtml("Movies with their cast sorted in a natural order",
                         sortCast(ActorComparators.byNameComparator)),
@@ -381,10 +381,10 @@ public class MovieServiceImpl implements MovieService {
                         findMoviesClosestToCriteria(Comparator.comparing(car -> car.calculateRatingDifference(Rating.of(RatingItem.SIX_STARS))))
                 ), htmlService.manyToHtml("Movies matching the provided criteria",
                         findAllBy(MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
-                                Genre.ACTION,
+                                List.of(Genre.ACTION),
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
-                                List.of("TOM HOLLAND"),
+                                List.of("Tom Holland"),
                                 110,
                                 150,
                                 5.0

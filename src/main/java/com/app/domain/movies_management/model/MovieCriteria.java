@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record MovieCriteria(
-        Genre requiredGenre,
+        List<Genre> requiredGenres,
         LocalDate requiredReleaseDateMin,
         LocalDate requiredReleaseDateMax,
         List<String> requiredCast,

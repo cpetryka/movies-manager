@@ -13,7 +13,7 @@ public interface MoviesTestData {
 
     MovieEntity MOVIE_1_ENTITY = new MovieEntity(
             "SPIDER MAN NO WAY HOME",
-            "ACTION",
+            List.of("ACTION"),
             "JON WATTS",
             LocalDate.of(2021, 12, 17),
             List.of(
@@ -30,7 +30,7 @@ public interface MoviesTestData {
 
     MovieEntity MOVIE_2_ENTITY = new MovieEntity(
             "AFTER",
-            "ROMANCE",
+            List.of("ROMANCE"),
             "JENNY GAGE",
             LocalDate.of(2019, 4, 12),
             List.of(
@@ -46,7 +46,7 @@ public interface MoviesTestData {
 
     MovieEntity MOVIE_3_ENTITY = new MovieEntity(
             "TRANSFORMERS RISE OF THE BEASTS",
-            "ACTION",
+            List.of("ACTION"),
             "STEVEN CAPLE JR",
             LocalDate.of(2023, 6, 6),
             List.of(
@@ -63,7 +63,7 @@ public interface MoviesTestData {
 
     MovieEntity MOVIE_4_ENTITY = new MovieEntity(
             "UNCHARTED",
-            "ACTION",
+            List.of("ACTION"),
             "RUBEN FLEISCHER",
             LocalDate.of(2022, 2, 10),
             List.of(
@@ -80,7 +80,7 @@ public interface MoviesTestData {
 
     MovieEntity MOVIE_5_ENTITY = new MovieEntity(
             "THE LUCKY ONE",
-            "ROMANCE",
+            List.of("ROMANCE"),
             "SCOTT HICKS",
             LocalDate.of(2012, 4, 20),
             List.of(

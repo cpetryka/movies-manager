@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class Movie {
     final String title;
-    final Genre genre;
+    final List<Genre> genres;
     final String director;
     final LocalDate releaseDate;
     final List<Actor> cast;
@@ -35,7 +35,7 @@ public class Movie {
         return Movie
                 .builder()
                 .title(this.title)
-                .genre(this.genre)
+                .genres(this.genres)
                 .director(this.director)
                 .releaseDate(this.releaseDate)
                 .cast(this.cast.stream().sorted(castComparator).toList())
@@ -73,7 +73,7 @@ public class Movie {
      * @return true if the movie matches the criteria, false otherwise.
      */
     public boolean matchesCriteria(MovieCriteria movieCriteria) {
-        var matchesGenre = this.genre.equals(movieCriteria.requiredGenre());
+        var matchesGenre = new HashSet<>(this.genres).containsAll(movieCriteria.requiredGenres());
         var matchesReleaseDate = this.releaseDate.isAfter(movieCriteria.requiredReleaseDateMin())
                 && this.releaseDate.isBefore(movieCriteria.requiredReleaseDateMax());
         var containsCastMembers = new HashSet<>(this.cast.stream().map(Actor::getFullName).toList())
@@ -115,7 +115,7 @@ public class Movie {
     public String toString() {
         return "Movie(" +
                 "title=" + title +
-                ", genre=" + genre +
+                ", genres=" + genres +
                 ", director=" + director +
                 ", releaseDate=" + releaseDate +
                 ", cast=" + cast +

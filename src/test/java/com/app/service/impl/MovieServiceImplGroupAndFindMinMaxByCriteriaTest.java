@@ -42,7 +42,7 @@ public class MovieServiceImplGroupAndFindMinMaxByCriteriaTest {
     @DisplayName("when grouping function is null")
     void test1() {
         assertThatThrownBy(() -> movieService.groupAndFindMinMaxByCriteria(
-                null, toGenreMapper, Comparator.naturalOrder()))
+                null, toDurationMapper, Comparator.naturalOrder()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Grouping function is null");
     }
@@ -51,7 +51,7 @@ public class MovieServiceImplGroupAndFindMinMaxByCriteriaTest {
     @DisplayName("when min max grouping function is null")
     void test2() {
         assertThatThrownBy(() -> movieService.groupAndFindMinMaxByCriteria(
-                toGenreMapper, null, null))
+                toGenresMapper, null, null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Min max grouping function is null");
     }
@@ -60,7 +60,7 @@ public class MovieServiceImplGroupAndFindMinMaxByCriteriaTest {
     @DisplayName("when comparator is null")
     void test3() {
         assertThatThrownBy(() -> movieService.groupAndFindMinMaxByCriteria(
-                toGenreMapper, toDirectorMapper, null))
+                toGenresMapper, toDirectorMapper, null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Min max comparator is null");
     }
@@ -69,10 +69,10 @@ public class MovieServiceImplGroupAndFindMinMaxByCriteriaTest {
     @DisplayName("should group by genre and find at least one min and at least one max by rating")
     void test4() {
         assertThat(movieService.groupAndFindMinMaxByCriteria(
-                toGenreMapper, toRatingMapper, Comparator.naturalOrder()))
+                toGenresMapper, toRatingMapper, Comparator.naturalOrder()))
                 .containsAllEntriesOf(Map.of(
-                        Genre.ACTION, new MinMax<>(List.of(MOVIE_3, MOVIE_4), List.of(MOVIE_1)),
-                        Genre.ROMANCE, new MinMax<>(List.of(MOVIE_2), List.of(MOVIE_5))
+                        List.of(Genre.ACTION), new MinMax<>(List.of(MOVIE_3, MOVIE_4), List.of(MOVIE_1)),
+                        List.of(Genre.ROMANCE), new MinMax<>(List.of(MOVIE_2), List.of(MOVIE_5))
                 ));
     }
 }

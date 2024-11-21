@@ -62,7 +62,7 @@ class JsonFileToMoviesConverterTest {
                         MOVIE_1_ENTITY,
                         new MovieEntity(
                                 "SPIDER MAN NO WAY HOME?",
-                                "ACTION",
+                                List.of("ACTION"),
                                 "JON WATTS",
                                 LocalDate.of(2021, 12, 17),
                                 List.of(

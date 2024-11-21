@@ -62,7 +62,7 @@ class MovieServiceImplFindAllByTest {
                 ),
                 Arguments.of(
                         MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
-                                Genre.ACTION,
+                                List.of(Genre.ACTION),
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
                                 List.of("TOM HOLLAND"),
@@ -74,7 +74,7 @@ class MovieServiceImplFindAllByTest {
                 ),
                 Arguments.of(
                         MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
-                                Genre.ACTION,
+                                List.of(Genre.ACTION),
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
                                 List.of("Tom Holland"),

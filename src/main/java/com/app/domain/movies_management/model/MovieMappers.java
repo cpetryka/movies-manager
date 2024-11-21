@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 public interface MovieMappers {
     Function<Movie, String> toTitleMapper = movie -> movie.title;
-    Function<Movie, Genre> toGenreMapper = movie -> movie.genre;
+    Function<Movie, List<Genre>> toGenresMapper = movie -> movie.genres;
     Function<Movie, String> toDirectorMapper = movie -> movie.director;
     Function<Movie, LocalDate> toReleaseDataMapper = movie -> movie.releaseDate;
     Function<Movie, List<Actor>> toCastMapper = movie -> movie.cast;

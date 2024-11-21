@@ -45,10 +45,6 @@ class MovieServiceImplGetStatisticsTest {
     private static Stream<Arguments> extractorsWithStatistics() {
         return Stream.of(
                 Arguments.of(
-                        toGenreMapper,
-                        new Statistics<>(Genre.ACTION, Genre.ROMANCE, BigDecimal.ZERO)
-                ),
-                Arguments.of(
                         toReleaseDataMapper,
                         new Statistics<>(
                                 LocalDate.of(2012, 4, 20),
@@ -79,7 +75,7 @@ class MovieServiceImplGetStatisticsTest {
     @ParameterizedTest
     @MethodSource("extractorsWithStatistics")
     @DisplayName("when extractor is not null")
-    void test2(Function extractor, Statistics<?> statistics) {
+    void test3(Function extractor, Statistics<?> statistics) {
         assertThat(movieService.getStatistics(extractor))
                 .isEqualTo(statistics);
     }

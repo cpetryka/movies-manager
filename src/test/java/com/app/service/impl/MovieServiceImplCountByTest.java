@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.app.MoviesTestData.*;
-import static com.app.domain.movies_management.model.MovieMappers.toGenreMapper;
+import static com.app.domain.movies_management.model.MovieMappers.toGenresMapper;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
@@ -48,11 +48,11 @@ class MovieServiceImplCountByTest {
     @Test
     @DisplayName("when movies are counted correctly by classifier")
     void test2() {
-        Assertions.assertThat(movieService.countBy(toGenreMapper))
+        Assertions.assertThat(movieService.countBy(toGenresMapper))
                 .hasSize(2)
                 .containsAllEntriesOf(Map.of(
-                        Genre.ACTION, 2L,
-                        Genre.ROMANCE, 1L
+                        List.of(Genre.ACTION), 2L,
+                        List.of(Genre.ROMANCE), 1L
                 ));
     }
 }

@@ -1,6 +1,5 @@
 package com.app.infrastructure.persistence.entity;
 
-import com.app.domain.movies_management.model.Actor;
 import com.app.domain.movies_management.model.type.Genre;
 import com.app.domain.movies_management.model.Movie;
 import com.app.domain.movies_management.model.vo.Rating;
@@ -15,7 +14,7 @@ import java.util.List;
 @Builder
 public class MovieEntity {
     String title;
-    String genre;
+    List<String> genres;
     String director;
     LocalDate releaseDate;
     List<ActorEntity> cast;
@@ -36,7 +35,7 @@ public class MovieEntity {
         return Movie
                 .builder()
                 .title(title)
-                .genre(Genre.valueOf(genre))
+                .genres(genres.stream().map(Genre::valueOf).toList())
                 .director(director)
                 .releaseDate(releaseDate)
                 .cast(cast
