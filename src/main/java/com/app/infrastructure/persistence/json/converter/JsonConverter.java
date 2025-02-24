@@ -5,4 +5,5 @@ import java.io.FileWriter;
 
 public interface JsonConverter<T> {
     T fromJson(FileReader reader, Class<T> tClass);
+    void toJson(T data, FileWriter writer);
 }

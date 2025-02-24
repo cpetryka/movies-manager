@@ -3,6 +3,7 @@ package com.app.domain.movies_management.model;
 import com.app.domain.movies_management.model.type.Genre;
 import com.app.domain.movies_management.model.vo.Rating;
 import com.app.domain.movies_management.model.vo.RatingItem;
+import com.app.infrastructure.persistence.entity.MovieEntity;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -109,6 +110,19 @@ public class Movie {
      */
     public boolean isTitleEqualTo(String title) {
         return this.title.equals(title);
+    }
+
+    public MovieEntity toMovieEntity() {
+        return MovieEntity
+                .builder()
+               .title(this.title)
+               .genres(this.genres.stream().map(Enum::name).toList())
+               .director(this.director)
+               .releaseDate(this.releaseDate)
+               .cast(this.cast.stream().map(Actor::toActorEntity).toList())
+               .duration(this.duration)
+               .tmdbId(this.tmdbId)
+               .build();
     }
 
     @Override

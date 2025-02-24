@@ -8,6 +8,9 @@ import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
 import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
 import com.app.infrastructure.persistence.json.deserializer.impl.MoviesEntityJsonDeserializer;
 import com.app.application.validation.Validator;
+import com.app.infrastructure.persistence.json.serializer.JsonSerializer;
+import com.app.infrastructure.persistence.json.serializer.custom.LocalDateSerializer;
+import com.app.infrastructure.persistence.json.serializer.impl.MoviesEntityJsonSerializer;
 import com.app.infrastructure.persistence.validation.impl.MovieEntityValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,6 +29,8 @@ public class AppTestConfig {
         return new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .serializeNulls()
                 .create();
     }
 
@@ -37,6 +42,11 @@ public class AppTestConfig {
     @Bean
     public JsonDeserializer<MoviesEntity> jsonDeserializer(JsonConverter<MoviesEntity> jsonConverter) {
         return new MoviesEntityJsonDeserializer(jsonConverter);
+    }
+
+    @Bean
+    public JsonSerializer<MoviesEntity> jsonSerializer(JsonConverter<MoviesEntity> jsonConverter) {
+        return new MoviesEntityJsonSerializer(jsonConverter);
     }
 
     @Bean

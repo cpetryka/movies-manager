@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 
 @Component
 @RequiredArgsConstructor
@@ -15,5 +16,10 @@ public class GsonConverter<T> implements JsonConverter<T> {
     @Override
     public T fromJson(FileReader reader, Class<T> tClass) {
         return gson.fromJson(reader, tClass);
+    }
+
+    @Override
+    public void toJson(T data, FileWriter writer) {
+        gson.toJson(data, writer);
     }
 }

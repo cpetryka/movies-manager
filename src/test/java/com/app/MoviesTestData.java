@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface MoviesTestData {
     String MOVIES_FILENAME = "movies-test.json";
+    String MOVIES_OUTPUT_FILENAME = "movies-output-test.json";
 
     MovieEntity MOVIE_1_ENTITY = new MovieEntity(
             "SPIDER MAN NO WAY HOME",

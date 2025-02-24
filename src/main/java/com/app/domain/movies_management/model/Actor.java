@@ -1,6 +1,7 @@
 package com.app.domain.movies_management.model;
 
 import com.app.domain.movies_management.model.type.Gender;
+import com.app.infrastructure.persistence.entity.ActorEntity;
 import lombok.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,5 +29,16 @@ public class Actor {
 
     public boolean isAlive() {
         return deathDate == null;
+    }
+
+    public ActorEntity toActorEntity() {
+        return ActorEntity
+                .builder()
+                .name(name)
+                .gender(gender.name())
+                .birthDate(birthDate)
+                .deathDate(deathDate)
+                .biography(biography)
+                .build();
     }
 }
