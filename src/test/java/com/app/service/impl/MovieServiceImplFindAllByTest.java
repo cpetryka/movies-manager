@@ -1,10 +1,11 @@
 package com.app.service.impl;
 
-import com.app.model.Genre;
-import com.app.model.Movie;
-import com.app.model.Predicates;
-import com.app.repository.MovieRepository;
-import com.app.utils.MovieCriteria;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.MoviePredicates;
+import com.app.domain.movies_management.model.repository.MovieRepository;
+import com.app.domain.movies_management.model.MovieCriteria;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,37 +47,37 @@ class MovieServiceImplFindAllByTest {
     private static Stream<Arguments> predicatesWithExpectedResultLists() {
         return Stream.of(
                 Arguments.of(
-                        Predicates.hasReleaseDateBetweenPredicate(
+                        MoviePredicates.hasReleaseDateBetweenPredicate(
                                 LocalDate.of(2014, 1, 1),
                                 LocalDate.of(2018, 1, 1)
                         ),
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.hasReleaseDateBetweenPredicate(
+                        MoviePredicates.hasReleaseDateBetweenPredicate(
                                 LocalDate.of(2022, 1, 1),
                                 LocalDate.of(2024, 1, 1)
                         ),
                         List.of(MOVIE_3, MOVIE_4)
                 ),
                 Arguments.of(
-                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
-                                Genre.ACTION,
+                        MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
+                                List.of(Genre.ACTION),
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
                                 List.of("TOM HOLLAND"),
                                 140,
                                 150,
-                                8.8
+                                9.2
                         )),
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.matchesCriteriaPredicate(new MovieCriteria(
-                                Genre.ACTION,
+                        MoviePredicates.matchesCriteriaPredicate(new MovieCriteria(
+                                List.of(Genre.ACTION),
                                 LocalDate.of(2021, 10, 10),
                                 LocalDate.of(2024, 10, 10),
-                                List.of("TOM HOLLAND"),
+                                List.of("Tom Holland"),
                                 110,
                                 150,
                                 5.0
@@ -84,21 +85,21 @@ class MovieServiceImplFindAllByTest {
                         List.of(MOVIE_1, MOVIE_4)
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "JOHN"
                         )),
                         List.of()
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
                                 "SPIDER MAN",
-                                "ZENDAYA"
+                                "Zendaya"
                         )),
                         List.of(MOVIE_1)
                 ),
                 Arguments.of(
-                        Predicates.matchesKeywordsPredicate(List.of(
-                                "HOLLAND"
+                        MoviePredicates.matchesKeywordsPredicate(List.of(
+                                "Holland"
                         )),
                         List.of(MOVIE_1, MOVIE_4)
                 )

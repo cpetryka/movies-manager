@@ -1,8 +1,9 @@
 package com.app.service.impl;
 
-import com.app.model.Genre;
-import com.app.repository.MovieRepository;
-import com.app.utils.Statistics;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.movies_management.model.type.Genre;
+import com.app.domain.movies_management.model.repository.MovieRepository;
+import com.app.application.utils.Statistics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import static com.app.MoviesTestData.MOVIES_LIST;
-import static com.app.model.Mappers.*;
+import static com.app.domain.movies_management.model.MovieMappers.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.when;
@@ -43,10 +44,6 @@ class MovieServiceImplGetStatisticsTest {
 
     private static Stream<Arguments> extractorsWithStatistics() {
         return Stream.of(
-                Arguments.of(
-                        toGenreMapper,
-                        new Statistics<>(Genre.ACTION, Genre.ROMANCE, BigDecimal.ZERO)
-                ),
                 Arguments.of(
                         toReleaseDataMapper,
                         new Statistics<>(
@@ -78,7 +75,7 @@ class MovieServiceImplGetStatisticsTest {
     @ParameterizedTest
     @MethodSource("extractorsWithStatistics")
     @DisplayName("when extractor is not null")
-    void test2(Function extractor, Statistics<?> statistics) {
+    void test3(Function extractor, Statistics<?> statistics) {
         assertThat(movieService.getStatistics(extractor))
                 .isEqualTo(statistics);
     }

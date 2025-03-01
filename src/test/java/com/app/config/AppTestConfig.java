@@ -1,41 +1,56 @@
 package com.app.config;
 
-import com.app.json.converter.JsonConverter;
-import com.app.json.converter.impl.GsonConverter;
-import com.app.json.deserializer.JsonDeserializer;
-import com.app.json.deserializer.custom.LocalDateDeserializer;
-import com.app.json.deserializer.impl.MoviesDataJsonDeserializer;
-import com.app.json.model.MovieData;
-import com.app.json.model.MoviesData;
-import com.app.validation.Validator;
-import com.app.validation.impl.MovieDataValidator;
+import com.app.infrastructure.persistence.entity.MovieEntity;
+import com.app.infrastructure.persistence.entity.MoviesEntity;
+import com.app.infrastructure.persistence.json.converter.JsonConverter;
+import com.app.infrastructure.persistence.json.converter.impl.GsonConverter;
+import com.app.infrastructure.persistence.json.deserializer.JsonDeserializer;
+import com.app.infrastructure.persistence.json.deserializer.custom.LocalDateDeserializer;
+import com.app.infrastructure.persistence.json.deserializer.impl.MoviesEntityJsonDeserializer;
+import com.app.application.validation.Validator;
+import com.app.infrastructure.persistence.json.serializer.JsonSerializer;
+import com.app.infrastructure.persistence.json.serializer.custom.LocalDateSerializer;
+import com.app.infrastructure.persistence.json.serializer.impl.MoviesEntityJsonSerializer;
+import com.app.infrastructure.persistence.validation.impl.MovieEntityValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 import java.time.LocalDate;
 
+@RequiredArgsConstructor
 public class AppTestConfig {
+    private final Environment environment;
+
     @Bean
     public Gson gson() {
         return new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .serializeNulls()
                 .create();
     }
 
     @Bean
-    public JsonConverter<MoviesData> jsonConverter(Gson gson) {
+    public JsonConverter<MoviesEntity> jsonConverter(Gson gson) {
         return new GsonConverter<>(gson);
     }
 
     @Bean
-    public JsonDeserializer<MoviesData> jsonDeserializer(JsonConverter<MoviesData> jsonConverter) {
-        return new MoviesDataJsonDeserializer(jsonConverter);
+    public JsonDeserializer<MoviesEntity> jsonDeserializer(JsonConverter<MoviesEntity> jsonConverter) {
+        return new MoviesEntityJsonDeserializer(jsonConverter);
     }
 
     @Bean
-    public Validator<MovieData> validator() {
-        return new MovieDataValidator();
+    public JsonSerializer<MoviesEntity> jsonSerializer(JsonConverter<MoviesEntity> jsonConverter) {
+        return new MoviesEntityJsonSerializer(jsonConverter);
+    }
+
+    @Bean
+    public Validator<MovieEntity> validator() {
+        return new MovieEntityValidator("[A-Za-z\\d\\s]+");
     }
 }

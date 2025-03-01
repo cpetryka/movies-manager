@@ -1,9 +1,10 @@
 package com.app.service.impl;
 
-import com.app.model.Genre;
-import com.app.model.Movie;
-import com.app.repository.MovieRepository;
-import com.app.utils.Statistics;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.vo.Rating;
+import com.app.domain.movies_management.model.vo.RatingItem;
+import com.app.domain.movies_management.model.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,15 +45,17 @@ class MovieServiceImplFindMoviesClosestToCriteriaTest {
     private static Stream<Arguments> otherRatingWithExpectedMovies() {
         return Stream.of(
                 Arguments.of(
-                        8.5,
+                        Rating.of(RatingItem.EIGHT_STARS, RatingItem.NINE_STARS),
                         List.of(MOVIE_1)
                 ),
                 Arguments.of(
-                        6.0,
+                        Rating.of(RatingItem.SIX_STARS),
                         List.of(MOVIE_3, MOVIE_4)
                 ),
                 Arguments.of(
-                        5.9,
+                        Rating.of(RatingItem.TEN_STARS, RatingItem.TEN_STARS, RatingItem.TEN_STARS, RatingItem.TEN_STARS,
+                                RatingItem.FIVE_STARS, RatingItem.FIVE_STARS, RatingItem.FIVE_STARS,
+                                RatingItem.ONE_STAR, RatingItem.ONE_STAR, RatingItem.TWO_STARS),
                         List.of(MOVIE_2, MOVIE_3, MOVIE_4)
                 )
         );
@@ -69,7 +72,7 @@ class MovieServiceImplFindMoviesClosestToCriteriaTest {
     @ParameterizedTest
     @MethodSource("otherRatingWithExpectedMovies")
     @DisplayName("when comparator checks the smallest difference between the movie's rating and another specified rating.")
-    void test2(Double otherRating, List<Movie> expectedMovies) {
+    void test2(Rating otherRating, List<Movie> expectedMovies) {
         Comparator<Movie> carComparator = Comparator.comparing(car -> car.calculateRatingDifference(otherRating));
 
         assertThat(movieService.findMoviesClosestToCriteria(carComparator))

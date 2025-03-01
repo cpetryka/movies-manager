@@ -1,7 +1,8 @@
 package com.app.service.impl;
 
-import com.app.model.Movie;
-import com.app.repository.MovieRepository;
+import com.app.application.service.impl.MovieServiceImpl;
+import com.app.domain.movies_management.model.Movie;
+import com.app.domain.movies_management.model.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,11 +51,11 @@ class MovieServiceImplGroupByCastMembersTest {
         Comparator<List<Movie>> comparator = Comparator.comparingInt(List::size);
 
         Map<String, List<Movie>> expectedGroupedMovies = Map.of(
-                "TOM HOLLAND", List.of(MOVIE_1, MOVIE_4),
-                "ZENDAYA", List.of(MOVIE_1),
-                "BENEDICT CUMBERBATCH", List.of(MOVIE_1),
-                "MARK WAHLBERG", List.of(MOVIE_4),
-                "SOPHIA ALI", List.of(MOVIE_4)
+                "Tom Holland", List.of(MOVIE_1, MOVIE_4),
+                "Zendaya", List.of(MOVIE_1),
+                "Benedict Cumberbatch", List.of(MOVIE_1),
+                "Mark Wahlberg", List.of(MOVIE_4),
+                "Sophia Ali", List.of(MOVIE_4)
         );
 
         assertThat(movieService.groupByCastMembers(comparator))
