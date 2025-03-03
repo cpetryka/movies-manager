@@ -38,6 +38,6 @@ public enum Genre {
             }
         }
 
-        throw new IllegalArgumentException("Invalid genre: " + genre);
+        return null;
     }
 }
