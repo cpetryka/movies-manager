@@ -44,6 +44,17 @@ public class HttpClientServiceImpl implements HttpClientService {
 
     @SneakyThrows
     @Override
+    public String getRaw(String url) {
+        var response = httpClient.send(
+                requestGet(url),
+                HttpResponse.BodyHandlers.ofString()
+        );
+
+        return response.body();
+    }
+
+    @SneakyThrows
+    @Override
     public<T> T get(String url, TypeToken<T> type) {
         var response = httpClient.send(
                 requestGet(url),
