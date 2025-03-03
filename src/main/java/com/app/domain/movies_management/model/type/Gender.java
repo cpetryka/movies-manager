@@ -13,10 +13,21 @@ public enum Gender {
         this.value = value;
     }
 
+    /**
+     * Returns the value of the given gender
+     *
+     * @return the value of the given gender
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Returns the gender from the given string.
+     *
+     * @param value the string to be converted to a gender.
+     * @return the gender from the given string.
+     */
     public static Gender fromValue(String value) {
         final String lowerCaseValue = value.toLowerCase();
 

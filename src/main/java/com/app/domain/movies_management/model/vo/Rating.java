@@ -33,7 +33,21 @@ public class Rating {
         ratingItems.add(ratingItem);
     }
 
+    /**
+     * Returns a new rating with the given rating items.
+     *
+     * @param ratingItems the rating items.
+     */
     public static Rating of(RatingItem... ratingItems) {
         return new Rating(List.of(ratingItems));
+    }
+
+    /**
+     * Returns an empty rating.
+     *
+     * @return an empty rating.
+     */
+    public static Rating empty() {
+        return new Rating(List.of());
     }
 }
