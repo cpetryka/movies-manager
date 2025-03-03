@@ -33,6 +33,7 @@ public class MovieServiceImpl implements MovieService {
     private final HtmlService htmlService;
     private final EmailService emailService;
     private final PdfService pdfService;
+    private final MovieDataFetcherService movieDataFetcherService;
 
     @Value("${tmdb.api.key}")
     private String tmdbApiKey;
@@ -312,6 +313,22 @@ public class MovieServiceImpl implements MovieService {
                         MovieAdditionalInfo.class
                 ))
                 .toList();
+    }
+
+    /**
+     * Adds a movie to the repository based on the provided TMDB ID.
+     *
+     * @param tmdbId The TMDB ID of the movie to be added.
+     */
+    @Override
+    public Movie addMovieBasedOnTmdbId(String tmdbId) {
+        var movie = movieDataFetcherService.fetchMovie(tmdbId);
+
+        if(movie != null) {
+            movieRepository.addMovie(movie);
+        }
+
+        return movie;
     }
 
     /**

@@ -23,6 +23,7 @@ public interface MovieService {
     Map<String, List<Movie>> groupByCastMembers(Comparator<List<Movie>> moviesComparator);
     List<Movie> findMoviesClosestToCriteria(Comparator<Movie> movieComparator);
     List<MovieAdditionalInfo> getAdditionalInfoAboutMovieByTitle(String title);
+    Movie addMovieBasedOnTmdbId(String tmdbId);
     void sendReportByEmail(String emailTo, String subject);
     void saveReportAsPdf(String pdfFilePath);
 }
